@@ -33,6 +33,7 @@ def import_goods():
       201: {description: "Nhập hàng thành công"}
     """
     data = request.get_json()
+    owner_id = request.current_user_id
     
     
     try:
