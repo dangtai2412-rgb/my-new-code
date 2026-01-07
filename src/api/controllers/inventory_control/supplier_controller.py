@@ -33,7 +33,7 @@ def add_supplier():
         return jsonify({"message": "Thêm nhà cung cấp thành công", "id": supplier.supplier_id}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400
-
+    
 @supplier_bp.route('/', methods=['GET'])
 @token_required
 def get_suppliers():
