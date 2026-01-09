@@ -3,16 +3,11 @@ from flasgger import Swagger
 from infrastructure.databases import init_db
 from api.routes import register_routes
 import infrastructure.models 
-from cors import init_cors
-from config import Config
-from api.middleware import middleware
+
 
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
-    init_cors(app)
-    middleware(app)
     
 
     # Cấu hình Swagger duy nhất, hỗ trợ nút Authorize (Ổ khóa)
