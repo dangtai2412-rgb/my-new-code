@@ -19,3 +19,5 @@ class UnitService:
     # BỔ SUNG: Hàm lấy danh sách đơn vị theo sản phẩm
     def get_units_by_product(self, product_id):
         return self.repository.get_by_product(product_id)
+    def delete_unit(self, unit_id):
+        return self.repository.delete(unit_id)

@@ -44,3 +44,7 @@ class AccountReportService:
 
         ledger["total_revenue"] = total_revenue
         return ledger
+    def generate_daily_report(self, owner_id, report_date):
+        """Tổng hợp doanh thu, chi phí trong ngày"""
+        # Logic gọi repo để tính toán từ bảng Orders và StockImports
+        return self.repository.get_report_by_date(owner_id, report_date)

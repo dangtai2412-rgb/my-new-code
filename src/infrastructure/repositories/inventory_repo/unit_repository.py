@@ -14,3 +14,16 @@ class UnitRepository:
 
     def get_by_product(self, product_id):
         return self.session.query(UnitModel).filter_by(product_id=product_id).all()
+    def delete(self, unit_id):
+        """Xóa đơn vị tính"""
+        try:
+            unit = self.session.query(UnitModel).filter_by(unit_id=unit_id).first()
+            if unit:
+                self.session.delete(unit)
+                self.session.commit()
+                return True
+            return False
+        except Exception as e:
+            self.session.rollback()
+            raise e
+        # Đoạn code bạn đã có:

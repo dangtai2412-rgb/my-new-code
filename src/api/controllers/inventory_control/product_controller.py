@@ -1,19 +1,19 @@
+# src/api/controllers/inventory_control/product_controller.py
 from flask import Blueprint, request, jsonify
-from services.inventory_service.product_service import ProductService
-from infrastructure.repositories.inventory_repo.product_repository import ProductRepository
-from infrastructure.databases.mssql import session
 from api.middlewares.auth_middleware import token_required
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 
 product_bp = Blueprint('product_bp', __name__)
 
-product_repo = ProductRepository(session)
-product_service = ProductService(product_repo)
+# --- XÓA KHỞI TẠO THỦ CÔNG repo/service Ở ĐÂY ---
 
 @product_bp.route('/', methods=['POST'])
 @token_required
-def create_new_product():
+@inject
+def create_new_product(product_service = Provide[Container.product_service]):
     """
-    Thêm sản phẩm mới (Tự động gán Owner ID từ Token)
+    Thêm sản phẩm mới
     ---
     tags: [Inventory]
     security: [{BearerAuth: []}]
@@ -23,55 +23,59 @@ def create_new_product():
         schema:
           required: [product_name, selling_price]
           properties:
-            product_name: {type: string, example: "Bia Sài Gòn Lager"}
-            selling_price: {type: number, example: 18000}
-            stock_quantity: {type: integer, example: 50}
+            product_name: {type: string, example: "Gạch men 60x60"}
+            selling_price: {type: number, example: 150000}
+            stock_quantity: {type: integer, example: 100}
     responses:
-      201: {description: "Tạo sản phẩm thành công"}
-      401: {description: "Token không hợp lệ"}
+      201: {description: "Thành công"}
     """
     try:
         data = request.get_json()
-        
-      
-        data['owner_id'] = request.current_user_id 
-        
+        data['owner_id'] = getattr(request, 'current_user_id', None)
         product = product_service.create_product(data)
-        
-        return jsonify({
-            "message": "Tạo sản phẩm thành công",
-            "product_id": product.product_id
-        }), 201
+        return jsonify({"message": "Success", "product_id": product.product_id}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
 @product_bp.route('/', methods=['GET'])
 @token_required
-def list_products_by_owner():
+@inject
+def list_products_by_owner(product_service = Provide[Container.product_service]):
     """
-    Lấy danh sách sản phẩm (Chỉ lấy đúng của shop đang đăng nhập)
+    Lấy danh sách sản phẩm
     ---
     tags: [Inventory]
     security: [{BearerAuth: []}]
     responses:
-      200:
-        description: Danh sách sản phẩm thành công
+      200: {description: "Thành công"}
     """
     try:
-        # Lấy ID từ Token để làm điều kiện lọc
-        owner_id = request.current_user_id 
-        
-        # Gọi Service để tìm sản phẩm có owner_id khớp với ID này
-        products = product_service.get_products_by_owner(owner_id) 
-
-        result = []
-        for p in products:
-            result.append({
-                "product_id": p.product_id,
-                "product_name": p.product_name,
-                "selling_price": float(p.selling_price) if p.selling_price else 0,
-                "stock_quantity": p.stock_quantity
-            })
-        return jsonify({"data": result}), 200
+        owner_id = getattr(request, 'current_user_id', None)
+        products = product_service.get_products_by_owner(owner_id)
+        result = [{"id": p.product_id, "name": p.product_name, "price": p.selling_price} for p in products]
+        return jsonify(result), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@product_bp.route('/<int:product_id>', methods=['PUT'])
+@token_required
+@inject
+def update_product(product_id, product_service = Provide[Container.product_service]):
+    """Cập nhật thông tin sản phẩm"""
+    try:
+        data = request.get_json()
+        result = product_service.update_product(product_id, data)
+        return jsonify({"message": "Updated"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
+@product_bp.route('/<int:product_id>', methods=['DELETE'])
+@token_required
+@inject
+def delete_product(product_id, product_service = Provide[Container.product_service]):
+    """Xóa sản phẩm"""
+    try:
+        product_service.delete_product(product_id)
+        return jsonify({"message": "Deleted"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400

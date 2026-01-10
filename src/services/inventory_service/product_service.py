@@ -31,4 +31,18 @@ class ProductService:
     def get_products_by_owner(self, owner_id):
     # Sửa get_all() thành get_by_owner(owner_id)
         return self.repository.get_by_owner(owner_id)
+    def update_product(self, product_id, data):
+        product = self.repository.get_by_id(product_id)
+        if not product:
+            raise ValueError("Không tìm thấy sản phẩm")
+        
+        # Cập nhật các trường
+        product.product_name = data.get('product_name', product.product_name)
+        product.selling_price = float(data.get('selling_price', product.selling_price))
+        product.stock_quantity = int(data.get('stock_quantity', product.stock_quantity))
+        
+        return self.repository.update(product)
+
+    def delete_product(self, product_id):
+        return self.repository.delete(product_id)
     

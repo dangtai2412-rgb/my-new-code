@@ -6,17 +6,22 @@ class OrderRepository:
     def __init__(self, db_session=session):
         self.session = db_session
 
+    
     def add_order_with_details(self, order_model):
+        """Lưu hóa đơn và TỰ ĐỘNG TRỪ KHO"""
         try:
             self.session.add(order_model)
-            
-            # LOGIC CẨN THẬN: Duyệt qua từng món hàng để trừ tồn kho
+            # Duyệt qua từng sản phẩm trong đơn hàng
             for detail in order_model.details:
                 product = self.session.query(ProductModel).filter_by(product_id=detail.product_id).first()
                 if product:
-                    if product.stock_quantity < detail.order_quantity:
-                        raise ValueError(f"Sản phẩm {product.product_name} không đủ hàng trong kho!")
-                    product.stock_quantity -= detail.order_quantity # Trừ tồn kho
+                    # Kiểm tra tồn kho trước khi bán
+                    stock = product.stock_quantity or 0
+                    if stock < detail.order_quantity:
+                        raise ValueError(f"Sản phẩm {product.product_name} không đủ hàng! (Kho: {stock}, Cần: {detail.order_quantity})")
+                    
+                    # Trừ số lượng trong kho
+                    product.stock_quantity = stock - detail.order_quantity
             
             self.session.commit()
             self.session.refresh(order_model)

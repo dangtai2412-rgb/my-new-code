@@ -3,7 +3,7 @@ from infrastructure.models.sale_and_finance.order_detail_model import OrderDetai
 
 from infrastructure.models.sale_and_finance.account_report_model import AccountReportModel
 from infrastructure.databases.mssql import session
-
+from sqlalchemy import func, Date
 class AccountReportRepository:
     def __init__(self, db_session=session):
         self.session = db_session
@@ -37,3 +37,13 @@ class AccountReportRepository:
          .filter(OrderModel.order_date >= start_date)\
          .filter(OrderModel.order_date <= end_date)\
          .all()
+    def get_report_by_date(self, owner_id, report_date):
+        """Tổng hợp doanh thu từ đơn hàng trong một ngày cụ thể"""
+        # Lưu ý: report_date nên là kiểu string 'YYYY-MM-DD' hoặc object date
+        orders = self.session.query(OrderModel).filter(
+            OrderModel.employee_id.has(owner_id=owner_id), # Nếu filter theo shop
+            func.cast(OrderModel.order_date, Date) == report_date
+        ).all()
+        
+        # Logic tính toán tổng tiền, số lượng ở đây để trả về cho Service
+        return orders

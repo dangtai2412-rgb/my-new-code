@@ -45,3 +45,28 @@ class ProductRepository:
         Tìm kiếm một sản phẩm cụ thể theo ID.
         """
         return self.session.query(ProductModel).filter_by(product_id=product_id).first()
+    def get_by_id(self, product_id):
+        """Lấy 1 sản phẩm theo ID"""
+        return self.session.query(ProductModel).filter_by(product_id=product_id).first()
+
+    def update(self, product_model):
+        """Lưu các thay đổi của sản phẩm"""
+        try:
+            self.session.commit()
+            return product_model
+        except Exception as e:
+            self.session.rollback()
+            raise e
+
+    def delete(self, product_id):
+        """Xóa sản phẩm"""
+        try:
+            product = self.get_by_id(product_id)
+            if product:
+                self.session.delete(product)
+                self.session.commit()
+                return True
+            return False
+        except Exception as e:
+            self.session.rollback()
+            raise e

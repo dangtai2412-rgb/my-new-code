@@ -1,47 +1,33 @@
+# src/api/controllers/inventory_control/stock_import_controller.py
 from flask import Blueprint, request, jsonify
 from api.middlewares.auth_middleware import token_required
-from infrastructure.repositories.inventory_repo.stock_import_repository import StockImportRepository
-from services.inventory_service.stock_import_service import StockImportService
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 
 stock_import_bp = Blueprint('stock_import_bp', __name__)
-stock_repo = StockImportRepository()
-stock_service = StockImportService(stock_repo)
 
 @stock_import_bp.route('/', methods=['POST'])
 @token_required
-def import_goods():
+@inject
+def import_goods(stock_service = Provide[Container.stock_import_service]):
     """
-    Tạo phiếu nhập hàng (Tăng tồn kho tự động)
+    Tạo phiếu nhập hàng
     ---
     tags: [Inventory Control]
     security: [{BearerAuth: []}]
-    parameters:
-      - in: body
-        name: body
-        schema:
-          properties:
-            supplier_id: {type: integer, example: 1}
-            items:
-              type: array
-              items:
-                type: object
-                properties:
-                  product_id: {type: integer, example: 1}
-                  quantity: {type: integer, example: 10}
-                  unit_price: {type: number, example: 50000}
-    responses:
-      201: {description: "Nhập hàng thành công"}
     """
-    data = request.get_json()
-    owner_id = request.current_user_id
-    
-    
     try:
+        data = request.get_json()
+        owner_id = getattr(request, 'current_user_id', None)
         result = stock_service.create_stock_import(data, owner_id)
-        return jsonify({
-            "message": "Nhập hàng và cập nhật kho thành công", 
-            "import_id": result.import_id,
-            "total_amount": float(result.total_amount)
-        }), 201
+        return jsonify({"message": "Success", "import_id": result.import_id}), 201
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({"error": str(e)}), 500
+@stock_import_bp.route('/', methods=['GET'])
+@token_required
+@inject
+def get_import_history(stock_service = Provide[Container.stock_import_service]):
+    """Lấy danh sách lịch sử nhập hàng"""
+    owner_id = getattr(request, 'current_user_id', None)
+    history = stock_service.get_history_by_owner(owner_id)
+    return jsonify(history), 200

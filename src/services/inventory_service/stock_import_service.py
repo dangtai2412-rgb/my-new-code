@@ -39,3 +39,6 @@ class StockImportService:
         new_import.total_amount = final_total
 
         return self.repository.add_import_with_details(new_import)
+    def get_history_by_owner(self, owner_id):
+        # Repository cần có hàm get_by_owner
+        return self.repository.get_by_owner(owner_id)

@@ -24,3 +24,7 @@ class StockImportRepository:
         except Exception as e:
             self.session.rollback()
             raise e
+    def get_by_owner(self, owner_id):
+        """Lấy danh sách phiếu nhập hàng của một chủ shop"""
+        return self.session.query(StockImportModel).filter_by(owner_id=owner_id).all()
+    
