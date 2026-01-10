@@ -17,3 +17,30 @@ class AccountReportService:
 
     def get_owner_reports(self, owner_id):
         return self.repository.get_by_owner(owner_id)
+    def generate_s1_hkd_ledger(self, start_date, end_date):
+        """
+        Tạo Sổ chi tiết doanh thu (Mẫu S1-HKD)
+        """
+        raw_data = self.repository.get_revenue_data(start_date, end_date)
+        
+        ledger = {
+            "report_name": "SỔ CHI TIẾT DOANH THU BÁN HÀNG HÓA, DỊCH VỤ",
+            "template_code": "Mẫu số S1-HKD",
+            "period": f"Từ {start_date} đến {end_date}",
+            "data": []
+        }
+
+        total_revenue = 0
+        for row in raw_data:
+            entry = {
+                "date": row.order_date.strftime("%d/%m/%Y"),
+                "voucher_no": f"HD-{row.order_id}",
+                "quantity": row.order_quantity,
+                "unit_price": row.unit_price,
+                "amount": row.line_total
+            }
+            ledger["data"].append(entry)
+            total_revenue += row.line_total
+
+        ledger["total_revenue"] = total_revenue
+        return ledger
