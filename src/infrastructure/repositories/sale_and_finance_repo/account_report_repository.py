@@ -1,6 +1,6 @@
 from infrastructure.models.sale_and_finance.order_model import OrderModel
 from infrastructure.models.sale_and_finance.order_detail_model import OrderDetailModel
-from infrastructure.databases.base import session
+
 from infrastructure.models.sale_and_finance.account_report_model import AccountReportModel
 from infrastructure.databases.mssql import session
 

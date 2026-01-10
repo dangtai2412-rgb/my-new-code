@@ -18,8 +18,8 @@ class OrderService:
             total_amount=0
         )
 
-        final_total = 0
         details = []
+        final_total = 0
         for item in data.get('items', []):
             line_total = int(item['quantity']) * float(item['unit_price'])
             detail = OrderDetailModel(
@@ -34,14 +34,11 @@ class OrderService:
 
         new_order.details = details
         new_order.total_amount = final_total
-
-        # Lưu đơn hàng
+        
         saved_order = self.repository.add_order_with_details(new_order)
 
-        # Tự động hạch toán nợ
         if payment_method == 'Debt' and saved_order:
             self.debt_service.create_debt_from_order(
                 saved_order.order_id, saved_order.customer_id, saved_order.total_amount
             )
-
         return saved_order

@@ -85,3 +85,4 @@ class SwaggerConfig:
         "swagger_ui": True,
         "specs_route": "/docs"
     }
+    
