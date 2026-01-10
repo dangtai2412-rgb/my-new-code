@@ -4,7 +4,7 @@ from infrastructure.databases import init_db
 from api.routes import register_routes
 import infrastructure.models
 from cors import init_cors
-from dependency_container import Container
+
 
 
 
@@ -14,16 +14,6 @@ def create_app():
     app = Flask(__name__)
     init_cors(app)
     
-    container = Container()
-
-    container.wire(modules=[
-        "api.controllers.sale_and_finance_control.order_controller",
-        "api.controllers.ai_core_control.ai_draft_order_controller",
-        "api.controllers.sale_and_finance_control.customer_controller",
-        "api.controllers.inventory_control.product_controller",
-        "api.controllers.sale_and_finance_control.account_report_controller"
-    ])
-    app.container = container
 
 
 

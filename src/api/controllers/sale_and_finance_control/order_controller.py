@@ -7,8 +7,7 @@ from dependency_injector.wiring import inject, Provide
 from dependency_container import Container
 
 order_bp = Blueprint('order_bp', __name__)
-repo = OrderRepository(session)
-service = OrderService(repo)
+
 
 
 @order_bp.route('/', methods=['POST'])
