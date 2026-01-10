@@ -7,6 +7,21 @@ class AIDraftOrderService:
     def create_draft_from_voice(self, data):
         # Giả lập logic AI phân tích giọng nói thành văn bản
         recognized_text = data.get('voice_content', '')
+        try:
+            prompt = f"Phân tích câu sau thành dữ liệu đơn hàng: {recognized_text}"
+            
+            # Gọi API với tham số timeout để tránh lỗi Code 4
+            response = self.model.generate_content(
+                prompt,
+                request_options={"timeout": 600} # Đợi tối đa 10 phút
+            )
+            ai_result = response.text
+            print(f"AI Response: {ai_result}") # Để bạn debug
+            
+        except Exception as e:
+            # Nếu bị timeout hoặc lỗi, log ra để biết và báo lỗi thân thiện
+            print(f"Lỗi kết nối Gemini: {e}")
+            raise Exception("AI đang bận xử lý dữ liệu giọng nói, vui lòng thử lại sau!")
         
         draft = AIDraftOrderModel(
             employee_id=data.get('employee_id'),

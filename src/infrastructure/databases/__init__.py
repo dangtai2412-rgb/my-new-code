@@ -1,6 +1,6 @@
 from infrastructure.models import * # Nó phải import hết từ file __init__.py ở bước 1 vào
 from .base import Base
-from .mssql import engine
+from .mssql import engine, session 
 
 def init_db(app):
     with app.app_context():

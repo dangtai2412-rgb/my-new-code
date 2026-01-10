@@ -2,12 +2,16 @@ from flask import Flask
 from flasgger import Swagger
 from infrastructure.databases import init_db
 from api.routes import register_routes
-import infrastructure.models 
+import infrastructure.models
+from cors import init_cors
+
+
 
 
 
 def create_app():
     app = Flask(__name__)
+    init_cors(app)
     
 
     # Cấu hình Swagger duy nhất, hỗ trợ nút Authorize (Ổ khóa)

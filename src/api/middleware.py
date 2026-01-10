@@ -18,7 +18,7 @@ def add_custom_headers(response):
     response.headers['X-Custom-Header'] = 'Value'
     return response
 
-def middleware(app):
+def setup_middleware(app):
     @app.before_request
     def before_request():
         log_request_info(app)
