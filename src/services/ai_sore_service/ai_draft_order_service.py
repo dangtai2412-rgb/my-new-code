@@ -1,5 +1,5 @@
 from infrastructure.models.ai_core.ai_draft_order_model import AIDraftOrderModel
-
+import google.generativeai as genai
 class AIDraftOrderService:
     def __init__(self, repository):
         self.repository = repository

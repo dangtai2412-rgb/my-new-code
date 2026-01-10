@@ -1,10 +1,11 @@
 from functools import wraps
 from flask import request, jsonify
 import jwt
+from config import Config
 
 # ⚠️ LƯU Ý: Chuỗi này phải giống hệt SECRET_KEY bên file auth_service.py
 # Nếu bên kia bạn để "YOUR_SECRET_KEY" thì bên này cũng phải y chang.
-SECRET_KEY = "YOUR_SECRET_KEY"
+SECRET_KEY = Config.SECRET_KEY
 
 def token_required(f):
     @wraps(f)

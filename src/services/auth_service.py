@@ -1,7 +1,7 @@
 from werkzeug.security import check_password_hash
 import jwt
 import datetime
-
+from config import Config
 class AuthService:
     def __init__(self, admin_repo, owner_repo, emp_repo):
         self.admin_repo = admin_repo
@@ -36,7 +36,7 @@ class AuthService:
             }
             
             # Lưu ý: "YOUR_SECRET_KEY" nên để trong file config.py
-            token = jwt.encode(payload, "YOUR_SECRET_KEY", algorithm="HS256")
+            token = jwt.encode(payload, Config.SECRET_KEY, algorithm="HS256")
             
             return {
                 "token": token, 
