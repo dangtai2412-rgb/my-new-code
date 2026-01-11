@@ -15,6 +15,7 @@ def create_app():
         "api.controllers.access_and_identity_control.administrator_controller",
         "api.controllers.access_and_identity_control.business_owner_controller",
         "api.controllers.access_and_identity_control.employee_controller",
+        "api.controllers.auth_controller", # Đã sửa đường dẫn này cho đúng với file thực tế
         "api.controllers.inventory_control.product_controller",
         "api.controllers.inventory_control.unit_controller",
         "api.controllers.inventory_control.supplier_controller",
@@ -23,9 +24,13 @@ def create_app():
         "api.controllers.sale_and_finance_control.debt_controller",
         "api.controllers.sale_and_finance_control.account_report_controller",
         "api.controllers.ai_core_control.ai_draft_order_controller",
-        "api.controllers.ai_core_control.ai_assistant_controller"
-])
+        "api.controllers.ai_core_control.ai_assistant_controller",
+        "api.controllers.inventory_control.stock_import_detail_controller",
+        "api.controllers.inventory_control.stock_import_controller" 
+        # ĐÃ XÓA DÒNG "" DƯ THỪA TẠI ĐÂY
+    ])
     app.container = container
+    
 
     
     app.config.from_object(Config)

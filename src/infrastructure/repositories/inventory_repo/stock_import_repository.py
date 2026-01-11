@@ -1,5 +1,5 @@
 from infrastructure.models.inventory.stock_import_model import StockImportModel
-from infrastructure.models.inventory.stock_import_detail_model import StockImportDetailModel
+from infrastructure.models.inventory.stock_import_detail_model import StockImportModel
 from infrastructure.models.inventory.product_model import ProductModel
 from infrastructure.databases.mssql import session
 

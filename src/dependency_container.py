@@ -58,6 +58,8 @@ class Container(containers.DeclarativeContainer):
     supplier_service = providers.Factory(SupplierService, repository=supplier_repo)
     customer_service = providers.Factory(CustomerService, repository=customer_repo)
     debt_service = providers.Factory(DebtService, repository=debt_repo)
+    stock_import_repo = providers.Factory(StockImportRepository, db_session=db_session)
+    stock_import_detail_repo = providers.Factory(StockImportDetailRepository, db_session=db_session)
     
     # Những service phức tạp cần nhiều "nguyên liệu"
     order_service = providers.Factory(
@@ -80,4 +82,12 @@ class Container(containers.DeclarativeContainer):
         order_service=order_service,
         customer_repo=customer_repo,
         product_repo=product_repo
+    )
+    stock_import_service = providers.Factory(
+        StockImportService,
+        repository=stock_import_repo
+    )
+    stock_import_detail_service = providers.Factory(
+        StockImportDetailService,
+        repository=stock_import_detail_repo
     )
