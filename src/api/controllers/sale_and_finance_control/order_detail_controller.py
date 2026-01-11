@@ -1,42 +1,35 @@
-from flask import Blueprint, request
-from api.schemas.order_detail import OrderDetailRequestSchema, OrderDetailResponseSchema
-from infrastructure.repositories.sale_and_finance_repo.order_detail_repository import OrderDetailRepository
-from domain.models.order_detail import OrderDetail
-from api.responses import success_response, error_response
+from flask import Blueprint, request, jsonify
 from api.middlewares.auth_middleware import token_required
-
-
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 
 order_detail_bp = Blueprint('order_detail_bp', __name__)
-repo = OrderDetailRepository()
-@token_required
+
 @order_detail_bp.route('/', methods=['POST'])
-def add_order_detail():
-    '''
-    Add product detail to an order
+@token_required
+@inject
+def add_order_detail(detail_service = Provide[Container.order_detail_service]):
+    """
+    Thêm chi tiết sản phẩm vào đơn hàng
     ---
-    tags:
-      - Order Details
+    tags: [Order Details]
+    security: [{BearerAuth: []}]
     parameters:
       - in: body
         name: body
         schema:
-          $ref: '#/components/schemas/OrderDetailRequest'
+          properties:
+            order_id: {type: integer, example: 1}
+            product_id: {type: integer, example: 1}
+            quantity: {type: integer, example: 10}
+            unit_price: {type: number, example: 50000}
     responses:
-      201:
-        description: Detail added successfully
-    '''
+      201: {description: "Thành công"}
+    """
     try:
-        data = request.json
-        new_detail = OrderDetail(
-            order_id=data['order_id'],
-            product_id=data['product_id'],
-            unit_id=data['unit_id'],
-            order_quantity=data['order_quantity'],
-            unit_price=data['unit_price'],
-            line_total=data.get('line_total')
-        )
-        result = repo.add(new_detail)
-        return success_response(OrderDetailResponseSchema().dump(result), 201)
+        data = request.get_json()
+        # Service sẽ lo việc tạo model và tính toán line_total
+        result = detail_service.create_detail(data)
+        return jsonify({"message": "Thêm chi tiết thành công", "id": result.detail_id}), 201
     except Exception as e:
-        return error_response(str(e), 500)
+        return jsonify({"error": str(e)}), 500

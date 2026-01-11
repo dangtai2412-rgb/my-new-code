@@ -1,17 +1,14 @@
 from flask import Blueprint, request, jsonify
 from api.middlewares.auth_middleware import token_required
-from services.sale_and_finance_service.payment_service import PaymentService
-from infrastructure.repositories.sale_and_finance_repo.payment_repository import PaymentRepository
-from infrastructure.databases.mssql import session
-from infrastructure.repositories.sale_and_finance_repo.debt_repository import DebtRepository
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
+
 payment_bp = Blueprint('payment_bp', __name__)
-repo = PaymentRepository(session)
-debt_repo = DebtRepository(session)
-service = PaymentService(repo, debt_repo)
 
 @payment_bp.route('/', methods=['POST'])
 @token_required
-def process_debt_payment():
+@inject
+def process_debt_payment(payment_service = Provide[Container.payment_service]):
     """
     Thanh toán công nợ
     ---
@@ -28,4 +25,13 @@ def process_debt_payment():
     responses:
       201: {description: "Thành công"}
     """
-    
+    try:
+        data = request.get_json()
+        result = payment_service.process_payment(
+            data.get('debt_id'), 
+            data.get('amount'), 
+            data.get('payment_method')
+        )
+        return jsonify({"message": "Thanh toán thành công", "payment_id": result.payment_id}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400

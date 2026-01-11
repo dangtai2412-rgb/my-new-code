@@ -26,8 +26,10 @@ def create_app():
         "api.controllers.ai_core_control.ai_draft_order_controller",
         "api.controllers.ai_core_control.ai_assistant_controller",
         "api.controllers.inventory_control.stock_import_detail_controller",
-        "api.controllers.inventory_control.stock_import_controller" 
-        # ĐÃ XÓA DÒNG "" DƯ THỪA TẠI ĐÂY
+        "api.controllers.inventory_control.stock_import_controller",
+        "api.controllers.access_and_identity_control.subscription_plan_controller",
+        "api.controllers.inventory_control.product_controller",
+        
     ])
     app.container = container
     

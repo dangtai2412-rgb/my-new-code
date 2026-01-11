@@ -1,16 +1,14 @@
 from flask import Blueprint, request, jsonify
 from api.middlewares.auth_middleware import token_required
-from services.sale_and_finance_service.debt_service import DebtService
-from infrastructure.repositories.sale_and_finance_repo.debt_repository import DebtRepository
-from infrastructure.databases.mssql import session
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 
 debt_bp = Blueprint('debt_bp', __name__)
-repo = DebtRepository(session)
-service = DebtService(repo)
 
 @debt_bp.route('/', methods=['POST'])
 @token_required
-def create_customer_debt():
+@inject
+def create_customer_debt(debt_service = Provide[Container.debt_service]):
     """
     Ghi nhận công nợ mới
     ---
@@ -29,7 +27,12 @@ def create_customer_debt():
     """
     try:
         data = request.get_json()
-        result = service.create_debt_from_order(data['order_id'], data['customer_id'], data['debt_amount'])
-        return jsonify({"id": result.debt_id}), 201
+        # Gọi service thay vì gọi trực tiếp
+        result = debt_service.create_debt_from_order(
+            data.get('order_id'), 
+            data.get('customer_id'), 
+            data.get('debt_amount')
+        )
+        return jsonify({"message": "Ghi nợ thành công", "id": result.debt_id}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400

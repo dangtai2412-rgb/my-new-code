@@ -1,33 +1,16 @@
 from flask import Blueprint, request, jsonify
-from infrastructure.repositories.access_and_identity_repo.subscription_plan_repository import SubscriptionPlanRepository
-from services.access_and_identity_service.subscription_plan_service import SubscriptionPlanService
-from infrastructure.databases.mssql import session
 from api.middlewares.auth_middleware import token_required
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 
 subscription_plan_bp = Blueprint('subscription_plan_bp', __name__)
 
-plan_repo = SubscriptionPlanRepository(session)
-plan_service = SubscriptionPlanService(plan_repo)
-
 @subscription_plan_bp.route('/', methods=['POST'])
 @token_required
-def create_new_subscription_plan(): # Tên hàm duy nhất
+@inject
+def create_new_subscription_plan(plan_service = Provide[Container.subscription_plan_service]):
     """
     Tạo gói cước dịch vụ mới
-    ---
-    tags: [Subscriptions]
-    security: [{BearerAuth: []}]
-    parameters:
-      - in: body
-        name: body
-        schema:
-          required: [plan_name, duration, price]
-          properties:
-            plan_name: {type: string, example: "Gói Premium 12 tháng"}
-            duration: {type: integer, example: 12}
-            price: {type: number, example: 1200000}
-    responses:
-      201: {description: "Thành công"}
     """
     try:
         data = request.get_json()
@@ -37,26 +20,16 @@ def create_new_subscription_plan(): # Tên hàm duy nhất
         return jsonify({"error": str(e)}), 400
 
 @subscription_plan_bp.route('/', methods=['GET'])
-@token_required
-def list_all_plans(): # Tên hàm duy nhất
+@inject  # Có thể không cần token nếu muốn public danh sách gói cước
+def list_all_plans(plan_service = Provide[Container.subscription_plan_service]):
     """
     Lấy danh sách các gói cước
-    ---
-    tags: [Subscriptions]
-    security: [{BearerAuth: []}]
-    responses:
-      200:
-        description: Thành công
     """
     try:
-        plans = plan_service.list_plans()
+        plans = plan_service.get_all_plans()
         return jsonify([
-            {
-                "id": p.plan_id, 
-                "name": p.plan_name, 
-                "duration": p.duration,
-                "price": float(p.price)
-            } for p in plans
+            {"id": p.plan_id, "name": p.plan_name, "price": float(p.price)} 
+            for p in plans
         ]), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500

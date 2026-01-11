@@ -1,33 +1,15 @@
 from flask import Blueprint, request, jsonify
-from infrastructure.repositories.access_and_identity_repo.administrator_repository import AdministratorRepository
-from services.access_and_identity_service.administrator_service import AdministratorService
-from infrastructure.databases.mssql import session
+from api.middlewares.auth_middleware import token_required
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 
 admin_bp = Blueprint('admin_bp', __name__)
 
-# Khởi tạo đúng dây chuyền
-admin_repo = AdministratorRepository(session)
-admin_service = AdministratorService(admin_repo)
-
-# ... (Phần import giữ nguyên)
-
 @admin_bp.route('/', methods=['POST'])
-def create():
+@inject
+def create(admin_service = Provide[Container.administrator_service]):
     """
     Tạo Admin mới
-    ---
-    tags: [Administrators]
-    parameters:
-      - in: body
-        name: body
-        schema:
-          required: [admin_name, password]
-          properties:
-            admin_name: {type: string, example: "admin_test"}
-            password: {type: string, example: "123456"}
-            admin_permission: {type: string, example: "Full"}
-    responses:
-      201: {description: "Thành công"}
     """
     try:
         data = request.get_json()
@@ -36,27 +18,16 @@ def create():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-# ... (giữ nguyên phần khởi tạo trên đầu)
-
 @admin_bp.route('/', methods=['GET'])
-def list_admins():
+@token_required
+@inject
+def list_admins(admin_service = Provide[Container.administrator_service]):
     """
     Lấy danh sách Admin
-    ---
-    get:
-      tags: [Administrators]
-      responses:
-        200:
-          description: Thành công
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AdministratorResponse'
     """
     try:
-        admins = admin_service.get_all_admins() # Cần thêm hàm này trong Service/Repo
+        admins = admin_service.get_all_admins()
+        # Giả sử model có to_dict hoặc bạn tự map
         return jsonify([{"id": a.admin_id, "name": a.admin_name} for a in admins]), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
