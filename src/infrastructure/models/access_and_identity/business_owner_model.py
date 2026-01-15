@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from infrastructure.databases.base import Base
-
+from sqlalchemy.orm import relationship
 class BusinessOwnerModel(Base):
     __tablename__ = 'business_owners'
     #__table_args__ = {'extend_existing': True}
@@ -12,5 +12,8 @@ class BusinessOwnerModel(Base):
     account_status = Column(String(20))
     # Khóa ngoại nối đến Admin
     admin_id = Column(Integer, ForeignKey('administrators.admin_id'))
-    plan_id = Column(Integer) # Sau này nối đến SubscriptionPlan
+    
     password = Column(String(255), nullable=False)
+    plan_id = Column(Integer, ForeignKey('subscription_plans.plan_id'))
+    
+    

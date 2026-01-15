@@ -10,7 +10,44 @@ employee_bp = Blueprint('employee_bp', __name__)
 @inject
 def create_new_employee(emp_service = Provide[Container.employee_service]):
     """
-    Tạo nhân viên mới
+    Tạo nhân viên mới (Dành cho Chủ cửa hàng)
+    ---
+    tags:
+      - Employee
+    security:
+      - Bearer: []
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          required:
+            - employee_name
+            - username
+            - password
+            - owner_id
+          properties:
+            employee_name:
+              type: string
+              example: "Le Van Nhan Vien"
+            username:
+              type: string
+              example: "nv_banhang_01"
+            password:
+              type: string
+              example: "Nv123456"
+            role:
+              type: string
+              enum: ["SALES", "INVENTORY", "ACCOUNTANT"]
+              example: "SALES"
+            owner_id:
+              type: integer
+              example: 10
+              description: ID của chủ cửa hàng quản lý nhân viên này
+    responses:
+      201:
+        description: Tạo nhân viên thành công
     """
     try:
         data = request.get_json()
@@ -25,6 +62,19 @@ def create_new_employee(emp_service = Provide[Container.employee_service]):
 def list_employees_by_owner(owner_id, emp_service = Provide[Container.employee_service]):
     """
     Lấy danh sách nhân viên của một chủ sở hữu
+    ---
+    tags:
+      - Employee
+    security:
+      - Bearer: []
+    parameters:
+      - in: path
+        name: owner_id
+        type: integer
+        required: true
+    responses:
+      200:
+        description: Danh sách nhân viên
     """
     try:
         employees = emp_service.get_employees_by_owner(owner_id)

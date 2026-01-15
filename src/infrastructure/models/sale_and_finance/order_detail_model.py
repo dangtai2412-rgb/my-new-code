@@ -4,14 +4,20 @@ from infrastructure.databases.base import Base
 
 class OrderDetailModel(Base):
     __tablename__ = 'order_details'
+
+    # 1. Thêm ForeignKey kết nối với bảng Orders
+    order_id = Column(Integer, ForeignKey('orders.order_id'), primary_key=True, nullable=False)
     
-    # Khóa chính phức hợp (Composite Key) theo ERD
-    order_id = Column(Integer, ForeignKey('orders.order_id'), primary_key=True)
-    product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    unit_id = Column(Integer, ForeignKey('units.unit_id'), primary_key=True)
+    # 2. Thêm ForeignKey kết nối với bảng Products
+    product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True, nullable=False)
+    
+    # (Nếu có unit_id cũng nên thêm ForeignKey luôn)
+    unit_id = Column(Integer, ForeignKey('units.unit_id'), nullable=True)
 
-    order_quantity = Column(Integer, nullable=False)
-    unit_price = Column(Numeric(12, 2), nullable=False) # Giá tại thời điểm bán
-    line_total = Column(Numeric(12, 2), nullable=False) # = quantity * price
-
+    quantity = Column(Integer, nullable=False)
+    unit_price = Column(Numeric(10, 2), nullable=False)
+    
+    # --- THÊM RELATIONSHIP ĐỂ CODE PYTHON DỄ GỌI ---
     order = relationship("OrderModel", back_populates="details")
+    product = relationship("ProductModel", back_populates="order_details")
+    unit = relationship("UnitModel") # Để lấy tên đơn vị (Cái/Thùng/Hộp)

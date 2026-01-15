@@ -9,7 +9,45 @@ business_owner_bp = Blueprint('business_owner_bp', __name__)
 @inject
 def register_new_owner(owner_service = Provide[Container.business_owner_service]):
     """
-    Tạo chủ cửa hàng mới
+    Đăng ký Chủ cửa hàng mới
+    ---
+    tags:
+      - Business Owner
+    parameters:
+      - in: body
+        name: body
+        description: Thông tin đăng ký chủ hộ kinh doanh
+        required: true
+        schema:
+          type: object
+          required:
+            - owner_name
+            - email
+            - password
+            - phone_number
+          properties:
+            owner_name:
+              type: string
+              example: "Tran Van Chu"
+            business_name:
+              type: string
+              example: "Tap Hoa Co Ba"
+            email:
+              type: string
+              example: "taphoacoba@gmail.com"
+            password:
+              type: string
+              example: "ChuShop@2026"
+            phone_number:
+              type: string
+              example: "0909123456"
+            subscription_plan_id:
+              type: integer
+              example: 1
+              description: ID gói cước muốn đăng ký (1=Basic, 2=Pro)
+    responses:
+      201:
+        description: Đăng ký thành công
     """
     try:
         data = request.get_json()
@@ -23,7 +61,15 @@ def register_new_owner(owner_service = Provide[Container.business_owner_service]
 @inject
 def get_all_business_owners(owner_service = Provide[Container.business_owner_service]):
     """
-    Lấy danh sách chủ doanh nghiệp
+    Lấy danh sách chủ doanh nghiệp (Admin Only)
+    ---
+    tags:
+      - Business Owner
+    security:
+      - Bearer: []
+    responses:
+      200:
+        description: Danh sách chủ hộ
     """
     try:
         owners = owner_service.list_all_owners()
