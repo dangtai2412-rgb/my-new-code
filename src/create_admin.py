@@ -11,7 +11,8 @@ with app.app_context():
     password_raw = "123456"
     
     # 2. Kiểm tra
-    existing_user = session.query(AdministratorModel).filter_by(username=username).first() # Sửa db.session -> session
+    # Thay username bằng admin_name
+    existing_user = session.query(AdministratorModel).filter_by(admin_name=username).first()
     
     if existing_user:
         print(f"❌ Tài khoản '{username}' đã tồn tại rồi!")
@@ -21,10 +22,8 @@ with app.app_context():
         
         # 4. Lưu vào DB
         new_admin = AdministratorModel(
-            username=username,
-            password_hash=password_hash,
-            email="admin@bizflow.com",
-            full_name="Super Admin"
+            admin_name=username,
+            password=password_hash
         )
         session.add(new_admin)    # Sửa db.session.add -> session.add
         session.commit()          # Sửa db.session.commit -> session.commit

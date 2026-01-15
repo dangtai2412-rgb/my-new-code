@@ -61,7 +61,7 @@ class Container(containers.DeclarativeContainer):
         "api.controllers.access_and_identity_control.business_owner_controller",
         "api.controllers.access_and_identity_control.employee_controller",
         "api.controllers.access_and_identity_control.subscription_plan_controller",
-        "api.controllers.access_and_identity_control.auth_controller",
+        "api.controllers.auth_controller",
         
         "api.controllers.inventory_control.product_controller",
         "api.controllers.inventory_control.unit_controller",
