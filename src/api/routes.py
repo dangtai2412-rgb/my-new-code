@@ -17,8 +17,9 @@ from api.controllers.auth_controller import auth_bp
 from api.controllers.inventory_control.supplier_controller import supplier_bp
 from api.controllers.inventory_control.stock_import_controller import stock_import_bp
 from api.controllers.inventory_control.stock_import_detail_controller import stock_import_detail_bp
-
-
+from api.controllers.inventory_control.category_controller import category_bp
+from api.controllers.inventory_control.inventory_check_controller import inventory_check_bp
+from api.controllers.sale_and_finance_control.return_order_controller import return_order_bp
 
 def register_routes(app):
     # Đăng ký todo ở đây (vì đã xóa ở app.py)
@@ -45,7 +46,10 @@ def register_routes(app):
     app.register_blueprint(auth_bp, url_prefix='/auth')
     app.register_blueprint(supplier_bp, url_prefix='/suppliers')
     app.register_blueprint(stock_import_bp, url_prefix='/stock-imports')
-    app.register_blueprint(stock_import_detail_bp, url_prefix='/stock-import-details') 
+    app.register_blueprint(stock_import_detail_bp, url_prefix='/stock-import-details')
+    app.register_blueprint(category_bp, url_prefix='/api/categories')
+    app.register_blueprint(inventory_check_bp, url_prefix='/inventory-checks')
+    app.register_blueprint(return_order_bp, url_prefix='/return-orders')
 
 
 

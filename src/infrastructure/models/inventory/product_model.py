@@ -17,3 +17,5 @@ class ProductModel(Base):
     # --- 👇 2. THÊM ĐOẠN NÀY ĐỂ HẾT LỖI 👇 ---
     # Liên kết ngược lại với bảng chi tiết đơn hàng
     order_details = relationship("OrderDetailModel", back_populates="product")
+    category_id = Column(Integer, ForeignKey('categories.category_id'), nullable=True) 
+    category = relationship("CategoryModel", back_populates="products")

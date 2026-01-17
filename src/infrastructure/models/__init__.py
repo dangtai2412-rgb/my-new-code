@@ -17,13 +17,17 @@ from .sale_and_finance.account_report_model import AccountReportModel
 # 3. Inventory (Bổ sung phần thiếu)
 from .inventory.unit_model import UnitModel
 from .inventory.product_model import ProductModel
-from .inventory.supplier_model import SupplierModel                # <--- Mới thêm
-from .inventory.stock_import_model import StockImportModel         # <--- Mới thêm
-from .inventory.stock_import_detail_model import StockImportDetailModel # <--- Mới thêm
+from .inventory.supplier_model import SupplierModel                
+from .inventory.stock_import_model import StockImportModel         
+from .inventory.stock_import_detail_model import StockImportDetailModel 
 
 # 4. AI Core
 from .ai_core.ai_assistant_model import AIAssistantModel
 from .ai_core.ai_draft_order_model import AIDraftOrderModel
 
 # 5. Utilities (Nếu có)
-from .todo_model import TodoModel
+from .inventory.category_model import CategoryModel
+from .inventory.inventory_check_model import InventoryCheckModel
+from .inventory.inventory_check_detail_model import InventoryCheckDetailModel
+from .sale_and_finance.return_order_model import ReturnOrderModel
+from .sale_and_finance.return_order_detail_model import ReturnOrderDetailModel

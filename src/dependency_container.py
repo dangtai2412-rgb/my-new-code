@@ -10,6 +10,7 @@ from infrastructure.repositories.access_and_identity_repo.employee_repository im
 from infrastructure.repositories.access_and_identity_repo.subscription_plan_repository import SubscriptionPlanRepository
 
 # Inventory
+from infrastructure.repositories.inventory_repo import product_repository
 from infrastructure.repositories.inventory_repo.product_repository import ProductRepository
 from infrastructure.repositories.inventory_repo.unit_repository import UnitRepository
 from infrastructure.repositories.inventory_repo.supplier_repository import SupplierRepository
@@ -41,6 +42,11 @@ from services.inventory_service.unit_service import UnitService
 from services.inventory_service.supplier_service import SupplierService
 from services.inventory_service.stock_import_service import StockImportService
 from services.inventory_service.stock_import_detail_service import StockImportDetailService
+from infrastructure.repositories.inventory_repo.category_repository import CategoryRepository
+from services.inventory_service.category_service import CategoryService
+from infrastructure.repositories.inventory_repo.inventory_check_repository import InventoryCheckRepository
+from infrastructure.repositories.inventory_repo.inventory_check_repository import InventoryCheckRepository
+from services.inventory_service.inventory_check_service import InventoryCheckService
 
 # Sale & Finance
 from services.sale_and_finance_service.customer_service import CustomerService
@@ -49,6 +55,8 @@ from services.sale_and_finance_service.order_detail_service import OrderDetailSe
 from services.sale_and_finance_service.debt_service import DebtService
 from services.sale_and_finance_service.payment_service import PaymentService
 from services.sale_and_finance_service.account_report_service import AccountReportService
+from infrastructure.repositories.sale_and_finance_repo.return_order_repository import ReturnOrderRepository
+from services.sale_and_finance_service.return_order_service import ReturnOrderService
 
 # AI Core
 from services.ai_sore_service.ai_draft_order_service import AIDraftOrderService
@@ -68,6 +76,8 @@ class Container(containers.DeclarativeContainer):
         "api.controllers.inventory_control.supplier_controller",
         "api.controllers.inventory_control.stock_import_controller",
         "api.controllers.inventory_control.stock_import_detail_controller",
+        "api.controllers.inventory_control.category_controller",
+        "api.controllers.inventory_control.inventory_check_controller",
         
         "api.controllers.sale_and_finance_control.customer_controller",
         "api.controllers.sale_and_finance_control.order_controller",
@@ -75,6 +85,7 @@ class Container(containers.DeclarativeContainer):
         "api.controllers.sale_and_finance_control.debt_controller",
         "api.controllers.sale_and_finance_control.payment_controller",
         "api.controllers.sale_and_finance_control.account_report_controller",
+        "api.controllers.sale_and_finance_control.return_order_controller",
         
         "api.controllers.ai_core_control.ai_draft_order_controller",
         "api.controllers.ai_core_control.ai_assistant_controller"
@@ -123,7 +134,14 @@ class Container(containers.DeclarativeContainer):
     supplier_service = providers.Factory(SupplierService, repository=supplier_repo)
     stock_import_service = providers.Factory(StockImportService, repository=stock_import_repo)
     stock_import_detail_service = providers.Factory(StockImportDetailService, repository=stock_import_detail_repo)
-
+    category_repository = providers.Factory(CategoryRepository)
+    category_service = providers.Factory(CategoryService, category_repository=category_repository)
+    inventory_check_repository = providers.Factory(InventoryCheckRepository)
+    inventory_check_service = providers.Factory(
+        InventoryCheckService,
+        product_repository=product_repository,
+        inventory_check_repository=inventory_check_repository
+    )
     # --- Sale & Finance ---
     customer_service = providers.Factory(CustomerService, repository=customer_repo)
     
@@ -161,4 +179,12 @@ class Container(containers.DeclarativeContainer):
         order_service=order_service,
         customer_repo=customer_repo,
         product_repo=product_repo
+    )
+    return_order_repository = providers.Factory(ReturnOrderRepository)
+
+    # Service (Inject ProductRepo + ReturnRepo)
+    return_order_service = providers.Factory(
+        ReturnOrderService,
+        product_repository=product_repository,
+        return_order_repository=return_order_repository
     )
