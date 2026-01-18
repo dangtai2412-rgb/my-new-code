@@ -93,7 +93,7 @@ export default function POSPage() {
 
       // GỌI API BACKEND
       // URL này trỏ đến Flask server của bạn (VD: http://localhost:5000/api/order)
-      const response = await axios.post("http://localhost:5000/api/order", payload);
+      const response = await axios.post("http://localhost:9999/api/order", payload);
 
       if (response.status === 200 || response.status === 201) {
         alert(`Thanh toán thành công qua ${method === 'CASH' ? 'Tiền mặt' : 'Ghi nợ'}!`);

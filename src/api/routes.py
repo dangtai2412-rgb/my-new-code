@@ -20,7 +20,7 @@ from api.controllers.inventory_control.category_controller import category_bp
 from api.controllers.inventory_control.inventory_check_controller import inventory_check_bp
 from api.controllers.sale_and_finance_control.return_order_controller import return_order_bp
 from api.controllers.sale_and_finance_control.expense_controller import expense_bp
-from api.controllers.auth_controller import auth_bp
+
 
 def register_routes(app):
     # --- NHÓM 1: Access & Identity ---

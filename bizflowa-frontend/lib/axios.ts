@@ -2,10 +2,10 @@ import axios from 'axios';
 
 // 1. Tạo bản sao của Axios với cấu hình cơ bản
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL, // Lấy link từ .env.local
+  baseURL: 'http://127.0.0.1:9999/api',
   headers: {
     'Content-Type': 'application/json',
-    'ngrok-skip-browser-warning': 'true',
+    'ngrok-skip-browser-warning': 'true'
   },
 });
 

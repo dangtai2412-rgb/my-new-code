@@ -1,156 +1,191 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { DollarSign, ShoppingBag, Users, AlertTriangle, TrendingUp } from "lucide-react";
-import api from '@/lib/axios';
-
-// Định nghĩa kiểu dữ liệu cho đơn hàng hiển thị
-interface RecentOrder {
-  id: number;
-  customer_name: string;
-  total_amount: number;
-  status: string;
-  created_at: string;
-}
+import { 
+  DollarSign, ShoppingBag, Users, AlertTriangle, 
+  ArrowUpRight, Package, Calendar, Loader2 
+} from "lucide-react";
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer 
+} from 'recharts';
+import api from '@/lib/axios'; // Đảm bảo bạn đã có file này
 
 export default function Dashboard() {
-  const [stats, setStats] = useState({
-    revenue: 0,
-    orders_count: 0,
-    customers_count: 0,
-    low_stock_count: 0
-  });
-  const [recentOrders, setRecentOrders] = useState<RecentOrder[]>([]);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+    revenue_today: 0,
+    orders_today: 0,
+    low_stock_count: 0,
+    expenses_month: 0
+  });
+  const [revenueData, setRevenueData] = useState([]);
+  const [topProducts, setTopProducts] = useState([]);
+
+  // Hàm gọi API lấy dữ liệu
+  const fetchData = async () => {
+    try {
+      const [statsRes, chartRes, topRes] = await Promise.all([
+        api.get('/reports/dashboard'),
+        api.get('/reports/chart'),
+        api.get('/reports/top-products')
+      ]);
+
+      setStats(statsRes.data);
+      setRevenueData(chartRes.data);
+      setTopProducts(topRes.data);
+    } catch (error) {
+      console.error("Lỗi tải dữ liệu Dashboard:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        // 1. Gọi API lấy số liệu thống kê (Nếu chưa có endpoint này, BE sẽ trả lỗi và ta dùng số giả)
-        // const statsRes = await api.get('/reports/dashboard-stats'); 
-        // setStats(statsRes.data);
-
-        // 2. Gọi API lấy đơn hàng mới nhất
-        // const ordersRes = await api.get('/orders?limit=5');
-        // setRecentOrders(ordersRes.data);
-
-        // --- MOCK DATA (DỮ LIỆU GIẢ ĐỂ TEST GIAO DIỆN KHI CHƯA CÓ API DASHBOARD) ---
-        // Khi nào Backend viết xong API thống kê thì xóa đoạn này đi
-        setStats({
-          revenue: 15400000,
-          orders_count: 42,
-          customers_count: 128,
-          low_stock_count: 5
-        });
-        setRecentOrders([
-          { id: 101, customer_name: "Nguyễn Văn A", total_amount: 500000, status: "COMPLETED", created_at: "2024-01-20" },
-          { id: 102, customer_name: "Trần Thị B", total_amount: 1200000, status: "PENDING", created_at: "2024-01-20" },
-          { id: 103, customer_name: "Lê Văn C", total_amount: 250000, status: "CANCELLED", created_at: "2024-01-19" },
-        ]);
-        // --------------------------------------------------------------------------
-
-      } catch (error) {
-        console.error("Lỗi tải dashboard:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDashboardData();
+    fetchData();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+        <span className="ml-2 text-gray-500">Đang tải số liệu...</span>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-800">Tổng quan kinh doanh</h1>
+    <div className="space-y-8 animate-in fade-in duration-500 pb-10">
+      
+      {/* 1. Header */}
+      <div className="flex justify-between items-end">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-800">Tổng quan kinh doanh</h1>
+          <p className="text-gray-500 mt-1">Số liệu cập nhật theo thời gian thực hôm nay.</p>
+        </div>
+        <button 
+          onClick={fetchData} 
+          className="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-sm font-medium"
+        >
+          Làm mới
+        </button>
+      </div>
 
-      {/* 4 Thẻ Thống kê (Cards) */}
+      {/* 2. Các thẻ chỉ số (KPI Cards) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Thẻ 1: Doanh thu */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="p-3 bg-green-100 text-green-600 rounded-full">
-            <DollarSign size={24} />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Doanh thu hôm nay</p>
-            <h3 className="text-2xl font-bold text-gray-800">{stats.revenue.toLocaleString('vi-VN')} ₫</h3>
-          </div>
-        </div>
-
-        {/* Thẻ 2: Đơn hàng */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="p-3 bg-blue-100 text-blue-600 rounded-full">
-            <ShoppingBag size={24} />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Đơn hàng mới</p>
-            <h3 className="text-2xl font-bold text-gray-800">{stats.orders_count}</h3>
+        {/* Doanh thu hôm nay */}
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-6 rounded-2xl text-white shadow-lg shadow-blue-200">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-blue-100 text-sm font-medium mb-1">Doanh thu hôm nay</p>
+              <h3 className="text-2xl font-bold">
+                {stats.revenue_today.toLocaleString('vi-VN')} ₫
+              </h3>
+            </div>
+            <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+              <DollarSign className="text-white" size={20} />
+            </div>
           </div>
         </div>
 
-        {/* Thẻ 3: Khách hàng */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="p-3 bg-purple-100 text-purple-600 rounded-full">
-            <Users size={24} />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Tổng khách hàng</p>
-            <h3 className="text-2xl font-bold text-gray-800">{stats.customers_count}</h3>
+        {/* Đơn hàng hôm nay */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-gray-500 text-sm font-medium mb-1">Đơn hàng mới</p>
+              <h3 className="text-2xl font-bold text-gray-800">{stats.orders_today}</h3>
+            </div>
+            <div className="bg-purple-100 p-2 rounded-lg">
+              <ShoppingBag className="text-purple-600" size={20} />
+            </div>
           </div>
         </div>
 
-        {/* Thẻ 4: Cảnh báo kho */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
-          <div className="p-3 bg-red-100 text-red-600 rounded-full">
-            <AlertTriangle size={24} />
+        {/* Chi phí tháng này (Mới thêm) */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-gray-500 text-sm font-medium mb-1">Chi phí tháng này</p>
+              <h3 className="text-2xl font-bold text-orange-600">
+                {stats.expenses_month.toLocaleString('vi-VN')} ₫
+              </h3>
+            </div>
+            <div className="bg-orange-100 p-2 rounded-lg">
+              <Users className="text-orange-600" size={20} />
+            </div>
           </div>
-          <div>
-            <p className="text-sm text-gray-500">Sắp hết hàng</p>
-            <h3 className="text-2xl font-bold text-gray-800">{stats.low_stock_count} SP</h3>
+        </div>
+
+        {/* Cảnh báo kho */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-red-100 relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-16 h-16 bg-red-50 rounded-bl-full -mr-4 -mt-4"></div>
+          <div className="flex justify-between items-start relative z-10">
+            <div>
+              <p className="text-gray-500 text-sm font-medium mb-1">Sắp hết hàng</p>
+              <h3 className="text-2xl font-bold text-red-600">{stats.low_stock_count}</h3>
+            </div>
+            <div className="bg-red-100 p-2 rounded-lg">
+              <AlertTriangle className="text-red-600" size={20} />
+            </div>
           </div>
+          {stats.low_stock_count > 0 && (
+            <div className="mt-2 text-xs text-red-500 font-medium">
+              Cần nhập thêm hàng ngay!
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Bảng đơn hàng gần đây */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-            <TrendingUp size={20} className="text-blue-600"/> Đơn hàng gần đây
-          </h2>
-          <button className="text-sm text-blue-600 hover:underline">Xem tất cả</button>
-        </div>
+      {/* 3. Biểu đồ & Top sản phẩm */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead className="bg-gray-50 border-b">
-              <tr>
-                <th className="p-3 text-sm font-semibold text-gray-600">Mã đơn</th>
-                <th className="p-3 text-sm font-semibold text-gray-600">Khách hàng</th>
-                <th className="p-3 text-sm font-semibold text-gray-600">Tổng tiền</th>
-                <th className="p-3 text-sm font-semibold text-gray-600">Trạng thái</th>
-                <th className="p-3 text-sm font-semibold text-gray-600">Ngày tạo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr><td colSpan={5} className="p-4 text-center">Đang tải...</td></tr>
-              ) : recentOrders.map((order) => (
-                <tr key={order.id} className="border-b hover:bg-gray-50">
-                  <td className="p-3 text-sm">#{order.id}</td>
-                  <td className="p-3 text-sm font-medium">{order.customer_name}</td>
-                  <td className="p-3 text-sm">{order.total_amount.toLocaleString('vi-VN')} ₫</td>
-                  <td className="p-3 text-sm">
-                    <span className={`px-2 py-1 rounded text-xs font-bold ${
-                      order.status === 'COMPLETED' ? 'bg-green-100 text-green-700' :
-                      order.status === 'PENDING' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
-                      {order.status}
+        {/* Biểu đồ */}
+        <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
+            <Calendar size={20} className="text-blue-600"/> 
+            Doanh thu 7 ngày qua
+          </h3>
+          <div className="h-[300px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={revenueData}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="date" axisLine={false} tickLine={false} />
+                <YAxis 
+                  axisLine={false} 
+                  tickLine={false} 
+                  tickFormatter={(value) => `${value / 1000}k`} 
+                />
+                <Tooltip 
+                  formatter={(value: any) => [`${Number(value).toLocaleString()} ₫`, 'Doanh thu']}
+                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                />
+                <Bar dataKey="revenue" fill="#3B82F6" radius={[4, 4, 0, 0]} barSize={40} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Top sản phẩm */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <h3 className="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
+            <Package size={20} className="text-purple-600"/> 
+            Top bán chạy
+          </h3>
+          <div className="space-y-4">
+            {topProducts.length === 0 ? (
+              <p className="text-gray-400 text-sm text-center py-4">Chưa có dữ liệu bán hàng</p>
+            ) : (
+              topProducts.map((item: any, index) => (
+                <div key={index} className="flex justify-between items-center border-b border-gray-50 last:border-0 pb-3 last:pb-0">
+                  <div className="flex items-center gap-3">
+                    <span className="w-6 h-6 flex items-center justify-center bg-gray-100 text-gray-600 text-xs font-bold rounded-full">
+                      {index + 1}
                     </span>
-                  </td>
-                  <td className="p-3 text-sm text-gray-500">{order.created_at}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    <span className="text-sm font-medium text-gray-700">{item.name}</span>
+                  </div>
+                  <span className="text-sm text-blue-600 font-bold">{item.sold}</span>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

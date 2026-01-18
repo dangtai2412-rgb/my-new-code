@@ -1,53 +1,46 @@
-from flask import Blueprint, jsonify
-from sqlalchemy import func
-from datetime import datetime, timedelta
+from flask import Blueprint, request, jsonify
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
+from services.auth_service import AuthService
+import json
 
-# Import trực tiếp (Không qua Container để tránh lỗi)
-from infrastructure.databases import session
-from infrastructure.models.sale_and_finance.order_model import OrderModel
-from infrastructure.models.sale_and_finance.order_detail_model import OrderDetailModel
-from infrastructure.models.inventory.product_model import ProductModel
-from infrastructure.models.sale_and_finance.expense_model import ExpenseModel
-from api.middlewares.auth_middleware import token_required
+auth_bp = Blueprint('auth_bp', __name__)
 
-account_report_bp = Blueprint('account_report_bp', __name__)
-
-@account_report_bp.route('/dashboard', methods=['GET'])
-@token_required
-def get_dashboard_stats(current_user):
+@auth_bp.route('/login', methods=['POST'])
+@inject
+def login(auth_service: AuthService = Provide[Container.auth_service]):
     try:
-        owner_id = getattr(current_user, 'owner_id', None)
-        today = datetime.now().date()
-        month_start = today.replace(day=1)
+        data = request.json
+        if not data:
+             return jsonify({'message': 'Missing JSON body'}), 400
+             
+        email = data.get('email')
+        password = data.get('password')
 
-        revenue_today = session.query(func.sum(OrderModel.total_amount))\
-            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today, OrderModel.payment_status == 'PAID').scalar() or 0
+        if not email or not password:
+            return jsonify({'message': 'Email and password are required'}), 400
 
-        orders_today = session.query(func.count(OrderModel.order_id))\
-            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today).scalar() or 0
-
-        low_stock_count = session.query(func.count(ProductModel.product_id))\
-            .filter(ProductModel.owner_id == owner_id, ProductModel.stock_quantity < 10).scalar() or 0
-
-        expenses_month = session.query(func.sum(ExpenseModel.amount))\
-            .filter(ExpenseModel.owner_id == owner_id, func.date(ExpenseModel.expense_date) >= month_start).scalar() or 0
-
-        return jsonify({
-            "revenue_today": float(revenue_today),
-            "orders_today": orders_today,
-            "low_stock_count": low_stock_count,
-            "expenses_month": float(expenses_month)
-        }), 200
+        result = auth_service.login(email, password)
+        if result:
+            return jsonify(result), 200
+        else:
+            return jsonify({'message': 'Invalid email or password'}), 401
     except Exception as e:
-        print(f"Lỗi Dashboard: {e}")
-        return jsonify({"message": "Lỗi lấy dữ liệu dashboard"}), 500
+        return jsonify({'message': str(e)}), 500
 
-@account_report_bp.route('/chart', methods=['GET'])
-@token_required
-def get_chart_data(current_user):
-    return jsonify([]), 200 # Trả về rỗng tạm thời để không lỗi
-
-@account_report_bp.route('/top-products', methods=['GET'])
-@token_required
-def get_top_products(current_user):
-    return jsonify([]), 200 # Trả về rỗng tạm thời
+@auth_bp.route('/refresh-token', methods=['POST'])
+@inject
+def refresh_token(auth_service: AuthService = Provide[Container.auth_service]):
+    try:
+        data = request.json
+        refresh_token = data.get('refresh_token')
+        
+        if not refresh_token:
+            return jsonify({'message': 'Refresh token is required'}), 400
+            
+        result = auth_service.refresh_token(refresh_token)
+        if result:
+            return jsonify(result), 200
+        return jsonify({'message': 'Invalid refresh token'}), 401
+    except Exception as e:
+         return jsonify({'message': str(e)}), 500
