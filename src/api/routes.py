@@ -40,7 +40,6 @@ def register_routes(app):
     app.register_blueprint(order_detail_bp, url_prefix='/order-details')
     app.register_blueprint(debt_bp, url_prefix='/debts')
     app.register_blueprint(payment_bp, url_prefix='/payments')
-    app.register_blueprint(account_report_bp, url_prefix='/account-reports')
     app.register_blueprint(ai_assistant_bp, url_prefix='/ai-assistants')
     app.register_blueprint(ai_draft_order_bp, url_prefix='/ai-draft-orders')
     app.register_blueprint(auth_bp, url_prefix='/auth')
