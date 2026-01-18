@@ -1,88 +1,53 @@
-from flask import Blueprint, request, jsonify
-from dependency_injector.wiring import inject, Provide
-from dependency_container import Container
-from services.auth_service import AuthService
-import json
+from flask import Blueprint, jsonify
+from sqlalchemy import func
+from datetime import datetime, timedelta
 
-auth_bp = Blueprint('auth_bp', __name__)
+# Import trực tiếp (Không qua Container để tránh lỗi)
+from infrastructure.databases import session
+from infrastructure.models.sale_and_finance.order_model import OrderModel
+from infrastructure.models.sale_and_finance.order_detail_model import OrderDetailModel
+from infrastructure.models.inventory.product_model import ProductModel
+from infrastructure.models.sale_and_finance.expense_model import ExpenseModel
+from api.middlewares.auth_middleware import token_required
 
-# --- SỬA LỖI 1: Đưa Route lên TRÊN, Inject xuống DƯỚI ---
-@auth_bp.route('/login', methods=['POST'])
-@inject
-def login_system(
-    auth_service: AuthService = Provide[Container.auth_service]
-):
-    """
-    Đăng nhập hệ thống
-    ---
-    tags:
-      - Auth
-    consumes:
-      - application/json
-    produces:
-      - application/json
-    parameters:
-      - in: body
-        name: body
-        description: Thông tin đăng nhập
-        required: true
-        schema:
-          type: object
-          required:
-            - username
-            - password
-          properties:
-            username:
-              type: string
-              example: "admin01"
-            password:
-              type: string
-              example: "123456"
-    responses:
-      200:
-        description: Thành công
-      400:
-        description: Thiếu thông tin
-      401:
-        description: Sai thông tin
-    """
-    # --- DEBUG: In ra tất cả những gì server nhận được ---
-    print(f"--- DEBUG LOGIN REQUEST ---")
-    print(f"Headers: {request.headers}")
-    raw_data = request.get_data(as_text=True)
-    print(f"Raw Body: {raw_data}")
+account_report_bp = Blueprint('account_report_bp', __name__)
 
-    # --- SỬA LỖI 2: Dùng force=True để ép đọc JSON dù header có sai ---
-    data = request.get_json(silent=True, force=True)
-    
-    # Fallback: Nếu JSON null thì thử parse thủ công từ text
-    if not data and raw_data:
-        try:
-            data = json.loads(raw_data)
-        except:
-            pass
-            
-    # Fallback: Nếu vẫn null thì thử lấy Form Data
-    if not data:
-        data = request.form.to_dict()
-
-    print(f"Parsed Data: {data}") # Xem kết quả cuối cùng server hiểu là gì
-
-    # Kiểm tra dữ liệu
-    if not data or 'username' not in data or 'password' not in data:
-        return jsonify({
-            "error": "Tên đăng nhập và mật khẩu là bắt buộc",
-            "received_raw": raw_data, # Trả về cho bạn xem server thấy gì
-            "parsed_data": data
-        }), 400
-
+@account_report_bp.route('/dashboard', methods=['GET'])
+@token_required
+def get_dashboard_stats(current_user):
     try:
-        # Gọi Service xử lý
-        result = auth_service.login(data['username'], data['password'])
-        return jsonify(result), 200
+        owner_id = getattr(current_user, 'owner_id', None)
+        today = datetime.now().date()
+        month_start = today.replace(day=1)
 
-    except ValueError as ve:
-        return jsonify({"error": str(ve)}), 401
+        revenue_today = session.query(func.sum(OrderModel.total_amount))\
+            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today, OrderModel.payment_status == 'PAID').scalar() or 0
+
+        orders_today = session.query(func.count(OrderModel.order_id))\
+            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today).scalar() or 0
+
+        low_stock_count = session.query(func.count(ProductModel.product_id))\
+            .filter(ProductModel.owner_id == owner_id, ProductModel.stock_quantity < 10).scalar() or 0
+
+        expenses_month = session.query(func.sum(ExpenseModel.amount))\
+            .filter(ExpenseModel.owner_id == owner_id, func.date(ExpenseModel.expense_date) >= month_start).scalar() or 0
+
+        return jsonify({
+            "revenue_today": float(revenue_today),
+            "orders_today": orders_today,
+            "low_stock_count": low_stock_count,
+            "expenses_month": float(expenses_month)
+        }), 200
     except Exception as e:
-        print(f"SYSTEM ERROR: {e}")
-        return jsonify({"error": "Lỗi hệ thống: " + str(e)}), 500
+        print(f"Lỗi Dashboard: {e}")
+        return jsonify({"message": "Lỗi lấy dữ liệu dashboard"}), 500
+
+@account_report_bp.route('/chart', methods=['GET'])
+@token_required
+def get_chart_data(current_user):
+    return jsonify([]), 200 # Trả về rỗng tạm thời để không lỗi
+
+@account_report_bp.route('/top-products', methods=['GET'])
+@token_required
+def get_top_products(current_user):
+    return jsonify([]), 200 # Trả về rỗng tạm thời

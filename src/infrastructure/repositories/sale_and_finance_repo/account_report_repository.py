@@ -1,49 +1,52 @@
+from sqlalchemy import func
+from datetime import datetime, timedelta
 from infrastructure.models.sale_and_finance.order_model import OrderModel
 from infrastructure.models.sale_and_finance.order_detail_model import OrderDetailModel
+from infrastructure.models.inventory.product_model import ProductModel
+from infrastructure.models.sale_and_finance.expense_model import ExpenseModel
 
-from infrastructure.models.sale_and_finance.account_report_model import AccountReportModel
-from infrastructure.databases.mssql import session
-from sqlalchemy import func, Date
 class AccountReportRepository:
-    def __init__(self, db_session=session):
-        self.session = db_session
+    def __init__(self, session):
+        self.session = session
 
-    def add(self, report_model):
-        try:
-            self.session.add(report_model)
-            self.session.commit()
-            self.session.refresh(report_model)
-            return report_model
-        except Exception as e:
-            self.session.rollback()
-            raise e
+    def get_dashboard_stats(self, owner_id):
+        today = datetime.now().date()
+        month_start = today.replace(day=1)
 
-    def get_by_owner(self, owner_id):
-        return self.session.query(AccountReportModel).filter_by(owner_id=owner_id).all()
-    
-    
-    def get_revenue_data(self, start_date, end_date):
-        """
-        Truy vấn dữ liệu từ bảng Orders và OrderDetails để đổ vào mẫu S1-HKD
-        """
-        return self.session.query(
-            OrderModel.order_date,
-            OrderModel.order_id,
-            OrderDetailModel.order_quantity,
-            OrderDetailModel.unit_price,
-            OrderDetailModel.line_total,
-            # Giả định bạn có thêm trường category hoặc product_name
-        ).join(OrderDetailModel, OrderModel.order_id == OrderDetailModel.order_id)\
-         .filter(OrderModel.order_date >= start_date)\
-         .filter(OrderModel.order_date <= end_date)\
-         .all()
-    def get_report_by_date(self, owner_id, report_date):
-        """Tổng hợp doanh thu từ đơn hàng trong một ngày cụ thể"""
-        # Lưu ý: report_date nên là kiểu string 'YYYY-MM-DD' hoặc object date
-        orders = self.session.query(OrderModel).filter(
-            OrderModel.employee_id.has(owner_id=owner_id), # Nếu filter theo shop
-            func.cast(OrderModel.order_date, Date) == report_date
-        ).all()
+        # Query Database
+        revenue = self.session.query(func.sum(OrderModel.total_amount))\
+            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today, OrderModel.payment_status == 'PAID').scalar() or 0
         
-        # Logic tính toán tổng tiền, số lượng ở đây để trả về cho Service
-        return orders
+        orders = self.session.query(func.count(OrderModel.order_id))\
+            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today).scalar() or 0
+        
+        low_stock = self.session.query(func.count(ProductModel.product_id))\
+            .filter(ProductModel.owner_id == owner_id, ProductModel.stock_quantity < 10).scalar() or 0
+        
+        expenses = self.session.query(func.sum(ExpenseModel.amount))\
+            .filter(ExpenseModel.owner_id == owner_id, func.date(ExpenseModel.expense_date) >= month_start).scalar() or 0
+
+        return {
+            "revenue_today": float(revenue),
+            "orders_today": orders,
+            "low_stock_count": low_stock,
+            "expenses_month": float(expenses)
+        }
+
+    def get_revenue_chart(self, owner_id):
+        data = []
+        for i in range(6, -1, -1):
+            date_check = datetime.now().date() - timedelta(days=i)
+            total = self.session.query(func.sum(OrderModel.total_amount))\
+                .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == date_check, OrderModel.payment_status == 'PAID').scalar() or 0
+            data.append({"date": date_check.strftime("%d/%m"), "revenue": float(total)})
+        return data
+
+    def get_top_products(self, owner_id):
+        results = self.session.query(ProductModel.product_name, func.sum(OrderDetailModel.quantity))\
+            .join(OrderDetailModel, ProductModel.product_id == OrderDetailModel.product_id)\
+            .join(OrderModel, OrderDetailModel.order_id == OrderModel.order_id)\
+            .filter(ProductModel.owner_id == owner_id)\
+            .group_by(ProductModel.product_name)\
+            .order_by(func.sum(OrderDetailModel.quantity).desc()).limit(5).all()
+        return [{"name": r[0], "sold": r[1]} for r in results]

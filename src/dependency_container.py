@@ -172,7 +172,12 @@ class Container(containers.DeclarativeContainer):
     )
 
     # [BỔ SUNG QUAN TRỌNG] Account Report Service
-    account_report_service = providers.Factory(AccountReportService, repository=account_report_repo)
+    account_report_repository = providers.Factory(AccountReportRepository, session=session)
+
+    account_report_service = providers.Factory(
+        AccountReportService,
+        repository=account_report_repository # 👈 Khớp với __init__ của Service
+    )
 
     # [Đã sửa lỗi pickle ở đây]
     return_order_service = providers.Factory(
