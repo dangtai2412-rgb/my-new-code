@@ -17,8 +17,8 @@ class ProductService:
         product_domain = Product(
             product_name=data.get('product_name'),
             owner_id=data.get('owner_id'),
-            selling_price=price,
-            cost_price=cost,
+            selling_price=data.get('selling_price', 0),
+            cost_price=data.get('cost_price', 0),
             stock_quantity=data.get('stock_quantity', 0)
         )
 
