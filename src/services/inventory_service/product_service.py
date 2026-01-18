@@ -9,6 +9,7 @@ class ProductService:
         # 1. Kiểm tra logic (ví dụ giá không được âm)
         price = float(data.get('selling_price', 0))
         stock = int(data.get('stock_quantity', 0))
+        cost = float(data.get('cost_price', 0))
         if price < 0:
             raise ValueError("Giá bán không được nhỏ hơn 0")
 
@@ -17,6 +18,7 @@ class ProductService:
             product_name=data.get('product_name'),
             owner_id=data.get('owner_id'),
             selling_price=price,
+            cost_price=cost,
             stock_quantity=data.get('stock_quantity', 0)
         )
 

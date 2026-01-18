@@ -19,3 +19,4 @@ class ProductModel(Base):
     order_details = relationship("OrderDetailModel", back_populates="product")
     category_id = Column(Integer, ForeignKey('categories.category_id'), nullable=True) 
     category = relationship("CategoryModel", back_populates="products")
+    cost_price = Column(Numeric(12, 2), default=0)

@@ -51,6 +51,7 @@ def register_routes(app):
     app.register_blueprint(inventory_check_bp, url_prefix='/inventory-checks')
     app.register_blueprint(return_order_bp, url_prefix='/return-orders')
     app.register_blueprint(expense_bp, url_prefix='/api/expenses')
+    app.register_blueprint(account_report_bp, url_prefix='/api/reports')
 
 
 

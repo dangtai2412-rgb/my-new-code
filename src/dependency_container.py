@@ -165,11 +165,7 @@ class Container(containers.DeclarativeContainer):
         debt_service=debt_service
     )
 
-    account_report_repository = providers.Factory(AccountReportRepository)
-    account_report_service = providers.Factory(
-        AccountReportService, 
-        account_report_repository=account_report_repository
-    )
+    
 
     # --- AI Core ---
     # AI Assistant cần AI Repo và AI Draft Repo

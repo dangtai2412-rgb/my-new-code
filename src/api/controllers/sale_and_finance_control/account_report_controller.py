@@ -1,57 +1,103 @@
 from flask import Blueprint, jsonify
+from sqlalchemy import func
+from datetime import datetime, timedelta
+
+# Import trực tiếp Database và Models (Không qua Service/Container nữa)
+from infrastructure.databases import session
+from infrastructure.models.sale_and_finance.order_model import OrderModel
+from infrastructure.models.sale_and_finance.order_detail_model import OrderDetailModel
+from infrastructure.models.inventory.product_model import ProductModel
+from infrastructure.models.sale_and_finance.expense_model import ExpenseModel
 from api.middlewares.auth_middleware import token_required
-from dependency_injector.wiring import inject, Provide
-from dependency_container import Container
 
 account_report_bp = Blueprint('account_report_bp', __name__)
 
+# ==========================================
+# 1️⃣ PHẦN DASHBOARD (Tổng quan)
+# ==========================================
 @account_report_bp.route('/dashboard', methods=['GET'])
 @token_required
-@inject
-def get_dashboard_stats(current_user, service=Provide[Container.account_report_service]):
-    """
-    Lấy số liệu tổng quan Dashboard
-    ---
-    tags:
-      - Reporting
-    security:
-      - Bearer: []
-    responses:
-      200:
-        description: Trả về doanh thu, đơn hàng, cảnh báo kho
-    """
-    stats = service.get_dashboard_stats(current_user.owner_id)
-    return jsonify(stats), 200
+def get_dashboard_stats(current_user):
+    try:
+        owner_id = current_user.owner_id
+        today = datetime.now().date()
+        month_start = today.replace(day=1)
 
+        # 1. Doanh thu hôm nay
+        revenue_today = session.query(func.sum(OrderModel.total_amount))\
+            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today, OrderModel.payment_status == 'PAID').scalar() or 0
+
+        # 2. Đơn hàng hôm nay
+        orders_today = session.query(func.count(OrderModel.order_id))\
+            .filter(OrderModel.owner_id == owner_id, func.date(OrderModel.created_at) == today).scalar() or 0
+
+        # 3. Cảnh báo tồn kho
+        low_stock_count = session.query(func.count(ProductModel.product_id))\
+            .filter(ProductModel.owner_id == owner_id, ProductModel.stock_quantity < 10).scalar() or 0
+
+        # 4. Chi phí tháng này
+        expenses_month = session.query(func.sum(ExpenseModel.amount))\
+            .filter(ExpenseModel.owner_id == owner_id, func.date(ExpenseModel.expense_date) >= month_start).scalar() or 0
+
+        return jsonify({
+            "revenue_today": float(revenue_today),
+            "orders_today": orders_today,
+            "low_stock_count": low_stock_count,
+            "expenses_month": float(expenses_month)
+        }), 200
+    except Exception as e:
+        print(f"Lỗi Dashboard: {e}")
+        return jsonify({"message": "Lỗi lấy số liệu Dashboard"}), 500
+
+
+# ==========================================
+# 2️⃣ PHẦN CHART (Biểu đồ)
+# ==========================================
 @account_report_bp.route('/chart', methods=['GET'])
 @token_required
-@inject
-def get_revenue_chart(current_user, service=Provide[Container.account_report_service]):
-    """
-    Lấy dữ liệu biểu đồ doanh thu 7 ngày
-    ---
-    tags:
-      - Reporting
-    security:
-      - Bearer: []
-    responses:
-      200:
-        description: Mảng dữ liệu ngày và doanh thu
-    """
-    chart_data = service.get_revenue_chart(current_user.owner_id)
-    return jsonify(chart_data), 200
+def get_chart_data(current_user):
+    try:
+        owner_id = current_user.owner_id
+        data = []
+        # Lấy 7 ngày gần nhất
+        for i in range(6, -1, -1):
+            date_check = datetime.now().date() - timedelta(days=i)
+            total = session.query(func.sum(OrderModel.total_amount))\
+                .filter(
+                    OrderModel.owner_id == owner_id, 
+                    func.date(OrderModel.created_at) == date_check, 
+                    OrderModel.payment_status == 'PAID'
+                ).scalar() or 0
+            
+            data.append({
+                "date": date_check.strftime("%d/%m"),
+                "revenue": float(total)
+            })
+        return jsonify(data), 200
+    except Exception as e:
+        print(f"Lỗi Chart: {e}")
+        return jsonify([]), 200 # Trả mảng rỗng nếu lỗi để FE không crash
 
+
+# ==========================================
+# 3️⃣ PHẦN TOP PRODUCTS (Sản phẩm bán chạy)
+# ==========================================
 @account_report_bp.route('/top-products', methods=['GET'])
 @token_required
-@inject
-def get_top_products(current_user, service=Provide[Container.account_report_service]):
-    """
-    Lấy Top 5 sản phẩm bán chạy
-    ---
-    tags:
-      - Reporting
-    security:
-      - Bearer: []
-    """
-    products = service.get_top_products(current_user.owner_id)
-    return jsonify(products), 200
+def get_top_products(current_user):
+    try:
+        owner_id = current_user.owner_id
+        results = session.query(
+            ProductModel.product_name, 
+            func.sum(OrderDetailModel.quantity)
+        ).join(OrderDetailModel, ProductModel.product_id == OrderDetailModel.product_id)\
+         .join(OrderModel, OrderDetailModel.order_id == OrderModel.order_id)\
+         .filter(ProductModel.owner_id == owner_id)\
+         .group_by(ProductModel.product_name)\
+         .order_by(func.sum(OrderDetailModel.quantity).desc())\
+         .limit(5).all()
+        
+        return jsonify([{"name": r[0], "sold": r[1]} for r in results]), 200
+    except Exception as e:
+        print(f"Lỗi Top Products: {e}")
+        return jsonify([]), 200
