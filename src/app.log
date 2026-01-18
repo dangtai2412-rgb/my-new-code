@@ -1,0 +1,1518 @@
+2026-01-19 00:49:49,005 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.11.205:9999
+2026-01-19 00:49:49,015 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-19 00:49:49,026 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 00:49:53,661 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 00:49:53,677 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 00:49:58,616 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:49:58,620 - app - DEBUG - Body: b''
+2026-01-19 00:49:58,674 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:58] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 00:49:58,723 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 00:49:58,736 - app - DEBUG - Body: b''
+2026-01-19 00:49:58,740 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:58] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 00:49:58,866 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:49:58,868 - app - DEBUG - Body: b''
+2026-01-19 00:49:58,871 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:58] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 00:49:59,018 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:49:59,020 - app - DEBUG - Body: b''
+2026-01-19 00:49:59,021 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:49:59,023 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:59] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 00:49:59,027 - app - DEBUG - Body: b''
+2026-01-19 00:49:59,068 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:59] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 00:49:59,490 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:49:59,491 - app - DEBUG - Body: b''
+2026-01-19 00:49:59,536 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 00:49:59,557 - app - DEBUG - Body: b''
+2026-01-19 00:49:59,589 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:59] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 00:49:59,598 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:49:59] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 00:50:09,191 - app - DEBUG - Headers: Host: 127.0.0.1:9999
+Connection: keep-alive
+Accept: */*
+Access-Control-Request-Method: GET
+Access-Control-Request-Headers: ngrok-skip-browser-warning
+Origin: http://localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+
+
+2026-01-19 00:50:09,617 - app - DEBUG - Body: b''
+2026-01-19 00:50:09,671 - app - DEBUG - Headers: Host: 127.0.0.1:9999
+Connection: keep-alive
+Accept: */*
+Access-Control-Request-Method: GET
+Access-Control-Request-Headers: ngrok-skip-browser-warning
+Origin: http://localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+
+
+2026-01-19 00:50:09,838 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:50:09] "OPTIONS /api/reports/dashboard HTTP/1.1" 200 -
+2026-01-19 00:50:09,840 - app - DEBUG - Headers: Host: 127.0.0.1:9999
+Connection: keep-alive
+Accept: */*
+Access-Control-Request-Method: GET
+Access-Control-Request-Headers: ngrok-skip-browser-warning
+Origin: http://localhost:3000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+
+
+2026-01-19 00:50:09,848 - app - DEBUG - Body: b''
+2026-01-19 00:50:09,861 - app - DEBUG - Body: b''
+2026-01-19 00:50:09,866 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:50:09] "OPTIONS /api/reports/chart HTTP/1.1" 200 -
+2026-01-19 00:50:09,871 - app - DEBUG - Headers: Host: 127.0.0.1:9999
+Connection: keep-alive
+Ngrok-Skip-Browser-Warning: true
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:3000
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+
+
+2026-01-19 00:50:09,877 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:50:09] "OPTIONS /api/reports/top-products HTTP/1.1" 200 -
+2026-01-19 00:50:09,901 - app - DEBUG - Body: b''
+2026-01-19 00:50:09,915 - app - DEBUG - Headers: Host: 127.0.0.1:9999
+Connection: keep-alive
+Ngrok-Skip-Browser-Warning: true
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:3000
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+
+
+2026-01-19 00:50:09,969 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:50:09] "[31m[1mGET /api/reports/dashboard HTTP/1.1[0m" 401 -
+2026-01-19 00:50:09,970 - app - DEBUG - Headers: Host: 127.0.0.1:9999
+Connection: keep-alive
+Ngrok-Skip-Browser-Warning: true
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json, text/plain, */*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:3000
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+
+
+2026-01-19 00:50:09,973 - app - DEBUG - Body: b''
+2026-01-19 00:50:10,004 - app - DEBUG - Body: b''
+2026-01-19 00:50:10,006 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:50:10] "[31m[1mGET /api/reports/chart HTTP/1.1[0m" 401 -
+2026-01-19 00:50:10,016 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:50:10] "[31m[1mGET /api/reports/top-products HTTP/1.1[0m" 401 -
+2026-01-19 00:54:59,395 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.11.205:9999
+2026-01-19 00:54:59,395 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-19 00:54:59,399 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 00:55:04,512 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 00:55:04,516 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 00:55:51,312 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 126
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:55:51,314 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "12345678",\n  "username": "admin2412"\n}'
+2026-01-19 00:55:51,316 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:55:51] "[35m[1mPOST /administrators/ HTTP/1.1[0m" 500 -
+2026-01-19 00:56:07,291 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:56:07,292 - app - DEBUG - Body: b''
+2026-01-19 00:56:07,334 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:07] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 00:56:07,364 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 00:56:07,380 - app - DEBUG - Body: b''
+2026-01-19 00:56:07,386 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:07] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 00:56:07,558 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:56:07,562 - app - DEBUG - Body: b''
+2026-01-19 00:56:07,564 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:07] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 00:56:07,677 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:56:07,678 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:56:07,682 - app - DEBUG - Body: b''
+2026-01-19 00:56:07,701 - app - DEBUG - Body: b''
+2026-01-19 00:56:07,704 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:07] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 00:56:07,736 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:07] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 00:56:08,183 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:56:08,185 - app - DEBUG - Body: b''
+2026-01-19 00:56:08,287 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:08] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 00:56:08,290 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 00:56:08,292 - app - DEBUG - Body: b''
+2026-01-19 00:56:08,298 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:08] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 00:56:25,905 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 127
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:56:25,907 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "12345678",\n  "username": "superadmin"\n}'
+2026-01-19 00:56:25,910 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:56:25] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 00:57:03,039 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 123
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:03,044 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Aa123456@",\n  "username": "admin"\n}'
+2026-01-19 00:57:03,046 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:03] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 00:57:15,578 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 123
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:15,580 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Aa123456@",\n  "username": "Admin"\n}'
+2026-01-19 00:57:15,582 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:15] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 00:57:26,325 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 123
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:26,327 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Aa123456@",\n  "username": "Admin"\n}'
+2026-01-19 00:57:26,329 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:26] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 00:57:35,435 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:35,437 - app - DEBUG - Body: b''
+2026-01-19 00:57:35,441 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:35] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 00:57:35,461 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 00:57:35,500 - app - DEBUG - Body: b''
+2026-01-19 00:57:35,509 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:35] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 00:57:35,703 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:35,705 - app - DEBUG - Body: b''
+2026-01-19 00:57:35,708 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:35] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 00:57:35,762 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:35,764 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:35,765 - app - DEBUG - Body: b''
+2026-01-19 00:57:35,769 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:35] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 00:57:35,773 - app - DEBUG - Body: b''
+2026-01-19 00:57:35,780 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:35] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 00:57:36,320 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:36,330 - app - DEBUG - Body: b''
+2026-01-19 00:57:36,419 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 00:57:36,432 - app - DEBUG - Body: b''
+2026-01-19 00:57:36,486 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:36] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 00:57:36,487 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:36] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 00:57:41,391 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 129
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:57:41,392 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Secret@123",\n  "username": "superadmin"\n}'
+2026-01-19 00:57:41,395 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:57:41] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 00:58:03,063 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 122
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 00:58:03,065 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van A",\n  "password": "Secret@123",\n  "username": "superadmin"\n}'
+2026-01-19 00:58:03,066 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 00:58:03] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 01:00:16,312 - werkzeug - INFO -  * Detected change in 'D:\\M\\Flask-CleanArchitecture - origin_unchage\\src\\dependency_container.py', reloading
+2026-01-19 01:00:16,971 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:00:25,062 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:00:25,067 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:00:55,872 - werkzeug - INFO -  * Detected change in 'D:\\M\\Flask-CleanArchitecture - origin_unchage\\src\\dependency_container.py', reloading
+2026-01-19 01:00:56,322 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:01:03,931 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:01:03,941 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:01:24,071 - werkzeug - INFO -  * Detected change in 'D:\\M\\Flask-CleanArchitecture - origin_unchage\\src\\api\\routes.py', reloading
+2026-01-19 01:01:25,003 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:25:17,719 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.11.205:9999
+2026-01-19 01:25:17,720 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-19 01:25:17,723 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:25:22,591 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:25:22,597 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:25:26,746 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:25:26,754 - app - DEBUG - Body: b''
+2026-01-19 01:25:26,854 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:26] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 01:25:26,924 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:25:26,933 - app - DEBUG - Body: b''
+2026-01-19 01:25:26,936 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:26] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 01:25:27,005 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:25:27,037 - app - DEBUG - Body: b''
+2026-01-19 01:25:27,052 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:27] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 01:25:27,213 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:25:27,214 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:25:27,216 - app - DEBUG - Body: b''
+2026-01-19 01:25:27,221 - app - DEBUG - Body: b''
+2026-01-19 01:25:27,224 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:27] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 01:25:27,236 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:27] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 01:25:27,661 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:25:27,662 - app - DEBUG - Body: b''
+2026-01-19 01:25:27,757 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:27] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 01:25:27,760 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:25:27,765 - app - DEBUG - Body: b''
+2026-01-19 01:25:27,768 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:27] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 01:25:32,011 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 129
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:25:32,013 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Secret@123",\n  "username": "superadmin"\n}'
+2026-01-19 01:25:32,014 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:25:32] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 01:27:26,654 - werkzeug - INFO -  * Detected change in 'D:\\M\\Flask-CleanArchitecture - origin_unchage\\src\\api\\controllers\\auth_controller.py', reloading
+2026-01-19 01:27:27,152 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:27:32,382 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:27:32,388 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:27:36,190 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:27:36,191 - app - DEBUG - Body: b''
+2026-01-19 01:27:36,259 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:36] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 01:27:36,301 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:27:36,306 - app - DEBUG - Body: b''
+2026-01-19 01:27:36,312 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:36] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 01:27:36,452 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:27:36,454 - app - DEBUG - Body: b''
+2026-01-19 01:27:36,464 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:36] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 01:27:36,614 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:27:36,616 - app - DEBUG - Body: b''
+2026-01-19 01:27:36,618 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:27:36,621 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:36] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 01:27:36,622 - app - DEBUG - Body: b''
+2026-01-19 01:27:36,657 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:36] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 01:27:37,017 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:27:37,019 - app - DEBUG - Body: b''
+2026-01-19 01:27:37,079 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:27:37,112 - app - DEBUG - Body: b''
+2026-01-19 01:27:37,152 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:37] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 01:27:37,170 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:37] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 01:27:46,128 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 129
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:27:46,129 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Secret@123",\n  "username": "superadmin"\n}'
+2026-01-19 01:27:46,130 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:27:46] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 01:28:18,429 - werkzeug - INFO -  * Detected change in 'D:\\M\\Flask-CleanArchitecture - origin_unchage\\src\\api\\controllers\\auth_controller.py', reloading
+2026-01-19 01:28:19,034 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:28:25,326 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:28:25,333 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:28:47,829 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.11.205:9999
+2026-01-19 01:28:47,829 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-01-19 01:28:47,832 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:28:53,534 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:28:53,549 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:28:56,670 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:28:56,672 - app - DEBUG - Body: b''
+2026-01-19 01:28:56,780 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:28:56] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 01:28:56,861 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:28:56,866 - app - DEBUG - Body: b''
+2026-01-19 01:28:56,871 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:28:56] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 01:28:56,928 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:28:56,931 - app - DEBUG - Body: b''
+2026-01-19 01:28:56,933 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:28:56] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 01:28:57,127 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1383421-310590-2259693450"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:28:57,130 - app - DEBUG - Body: b''
+2026-01-19 01:28:57,132 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:28:57] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 01:28:57,169 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.174354-85578-245115377"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:28:57,173 - app - DEBUG - Body: b''
+2026-01-19 01:28:57,183 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:28:57] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 01:28:57,234 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:28:57,235 - app - DEBUG - Body: b''
+2026-01-19 01:28:57,335 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:28:57] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 01:29:09,780 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:29:09,782 - app - DEBUG - Body: b''
+2026-01-19 01:29:09,785 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:09] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 01:29:09,831 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:29:09,855 - app - DEBUG - Body: b''
+2026-01-19 01:29:09,866 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:09] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 01:29:10,045 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:29:10,047 - app - DEBUG - Body: b''
+2026-01-19 01:29:10,049 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:10] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 01:29:10,142 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:29:10,143 - app - DEBUG - Body: b''
+2026-01-19 01:29:10,145 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:29:10,147 - app - DEBUG - Body: b''
+2026-01-19 01:29:10,147 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:10] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 01:29:10,150 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:10] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 01:29:10,506 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:29:10,507 - app - DEBUG - Body: b''
+2026-01-19 01:29:10,544 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:29:10,573 - app - DEBUG - Body: b''
+2026-01-19 01:29:10,629 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:10] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 01:29:10,632 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:10] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 01:29:26,020 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 129
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:29:26,022 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Secret@123",\n  "username": "superadmin"\n}'
+2026-01-19 01:29:26,023 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:29:26] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 01:30:29,437 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 102
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:30:29,438 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "dcm",\n  "password": "dcm123",\n  "username": "dcm"\n}'
+2026-01-19 01:30:29,439 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:30:29] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 01:33:42,222 - werkzeug - INFO -  * Detected change in 'D:\\M\\Flask-CleanArchitecture - origin_unchage\\src\\api\\controllers\\auth_controller.py', reloading
+2026-01-19 01:33:42,702 - werkzeug - INFO -  * Restarting with stat
+2026-01-19 01:33:47,413 - werkzeug - WARNING -  * Debugger is active!
+2026-01-19 01:33:47,426 - werkzeug - INFO -  * Debugger PIN: 979-882-414
+2026-01-19 01:34:45,316 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Windows"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:34:45,318 - app - DEBUG - Body: b''
+2026-01-19 01:34:45,387 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:45] "GET /docs/ HTTP/1.1" 200 -
+2026-01-19 01:34:45,410 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: text/css,*/*;q=0.1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: style
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.1508522-142690-2467375328"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:34:45,460 - app - DEBUG - Body: b''
+2026-01-19 01:34:45,465 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:45] "[36mGET /flasgger_static/swagger-ui.css HTTP/1.1[0m" 304 -
+2026-01-19 01:34:45,575 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.0907898-1002172-2417175323"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:34:45,577 - app - DEBUG - Body: b''
+2026-01-19 01:34:45,579 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:45] "[36mGET /flasgger_static/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2026-01-19 01:34:45,726 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.1383421-310590-2259693450"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:34:45,729 - app - DEBUG - Body: b''
+2026-01-19 01:34:45,730 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+If-None-Match: "1767024861.174354-85578-245115377"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+Sec-Ch-Ua-Mobile: ?0
+Accept: */*
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: script
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:34:45,733 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:45] "[36mGET /flasgger_static/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2026-01-19 01:34:45,753 - app - DEBUG - Body: b''
+2026-01-19 01:34:45,762 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:45] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
+2026-01-19 01:34:46,187 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json,*/*
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:34:46,196 - app - DEBUG - Body: b''
+2026-01-19 01:34:46,275 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Sec-Ch-Ua-Mobile: ?0
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+If-None-Match: "1767024861.0756204-628-168306998"
+If-Modified-Since: Mon, 29 Dec 2025 16:14:21 GMT
+
+
+2026-01-19 01:34:46,307 - app - DEBUG - Body: b''
+2026-01-19 01:34:46,367 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:46] "GET /apispec.json HTTP/1.1" 200 -
+2026-01-19 01:34:46,368 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:46] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
+2026-01-19 01:34:50,066 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 129
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:34:50,068 - app - DEBUG - Body: b'{\n  "email": "admin@bizflowa.com",\n  "full_name": "Nguyen Van Quan Tri",\n  "password": "Secret@123",\n  "username": "superadmin"\n}'
+2026-01-19 01:34:50,069 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:34:50] "[31m[1mPOST /api/administrators/ HTTP/1.1[0m" 400 -
+2026-01-19 01:35:09,306 - app - DEBUG - Headers: Host: localhost:9999
+Connection: keep-alive
+Content-Length: 196
+Sec-Ch-Ua-Platform: "Windows"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0
+Accept: application/json
+Sec-Ch-Ua: "Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+Origin: http://localhost:9999
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: http://localhost:9999/docs/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,vi;q=0.8
+Cookie: __next_hmr_refresh_hash__=6
+
+
+2026-01-19 01:35:09,308 - app - DEBUG - Body: b'{\n  "business_name": "Tap Hoa Co Ba",\n  "email": "taphoacoba@gmail.com",\n  "owner_name": "Tran Van Chu",\n  "password": "ChuShop@2026",\n  "phone_number": "0909123456",\n  "subscription_plan_id": 1\n}'
+2026-01-19 01:35:09,310 - werkzeug - INFO - 127.0.0.1 - - [19/Jan/2026 01:35:09] "[35m[1mPOST /api/business-owners/ HTTP/1.1[0m" 500 -

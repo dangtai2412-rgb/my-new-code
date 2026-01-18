@@ -1,45 +1,88 @@
 from flask import Blueprint, request, jsonify
+from dependency_injector.wiring import inject, Provide
+from dependency_container import Container
 from services.auth_service import AuthService
-from infrastructure.repositories.access_and_identity_repo.administrator_repository import AdministratorRepository
-from infrastructure.repositories.access_and_identity_repo.business_owner_repository import BusinessOwnerRepository
-from infrastructure.repositories.access_and_identity_repo.employee_repository import EmployeeRepository
-from infrastructure.databases.mssql import session
+import json
 
 auth_bp = Blueprint('auth_bp', __name__)
 
-# Khởi tạo các Repo để AuthService quét 3 bảng
-admin_repo = AdministratorRepository(session)
-owner_repo = BusinessOwnerRepository(session)
-emp_repo = EmployeeRepository(session)
-
-auth_service = AuthService(admin_repo, owner_repo, emp_repo)
-
+# --- SỬA LỖI 1: Đưa Route lên TRÊN, Inject xuống DƯỚI ---
 @auth_bp.route('/login', methods=['POST'])
-def login_system(): # Đổi tên hàm thành login_system để tránh trùng với tên endpoint
+@inject
+def login_system(
+    auth_service: AuthService = Provide[Container.auth_service]
+):
     """
-    Đăng nhập hệ thống (Admin, Owner, Employee)
+    Đăng nhập hệ thống
     ---
-    tags: [Auth]
+    tags:
+      - Auth
+    consumes:
+      - application/json
+    produces:
+      - application/json
     parameters:
       - in: body
         name: body
+        description: Thông tin đăng nhập
+        required: true
         schema:
-          required: [username, password]
+          type: object
+          required:
+            - username
+            - password
           properties:
-            username: {type: string, example: "admin01"}
-            password: {type: string, example: "123456"}
+            username:
+              type: string
+              example: "admin01"
+            password:
+              type: string
+              example: "123456"
     responses:
-      200: {description: "Đăng nhập thành công, trả về JWT Token"}
-      401: {description: "Sai tài khoản hoặc mật khẩu"}
+      200:
+        description: Thành công
+      400:
+        description: Thiếu thông tin
+      401:
+        description: Sai thông tin
     """
-    try:
-        data = request.get_json()
-        if not data or 'username' not in data or 'password' not in data:
-            return jsonify({"error": "Thiếu username hoặc password"}), 400
+    # --- DEBUG: In ra tất cả những gì server nhận được ---
+    print(f"--- DEBUG LOGIN REQUEST ---")
+    print(f"Headers: {request.headers}")
+    raw_data = request.get_data(as_text=True)
+    print(f"Raw Body: {raw_data}")
+
+    # --- SỬA LỖI 2: Dùng force=True để ép đọc JSON dù header có sai ---
+    data = request.get_json(silent=True, force=True)
+    
+    # Fallback: Nếu JSON null thì thử parse thủ công từ text
+    if not data and raw_data:
+        try:
+            data = json.loads(raw_data)
+        except:
+            pass
             
+    # Fallback: Nếu vẫn null thì thử lấy Form Data
+    if not data:
+        data = request.form.to_dict()
+
+    print(f"Parsed Data: {data}") # Xem kết quả cuối cùng server hiểu là gì
+
+    # Kiểm tra dữ liệu
+    if not data or 'username' not in data or 'password' not in data:
+        return jsonify({
+            "error": "Tên đăng nhập và mật khẩu là bắt buộc",
+            "received_raw": raw_data, # Trả về cho bạn xem server thấy gì
+            "parsed_data": data
+        }), 400
+
+    try:
+        # Gọi Service xử lý
         result = auth_service.login(data['username'], data['password'])
         return jsonify(result), 200
+
     except ValueError as ve:
         return jsonify({"error": str(ve)}), 401
     except Exception as e:
+        print(f"SYSTEM ERROR: {e}")
         return jsonify({"error": "Lỗi hệ thống: " + str(e)}), 500

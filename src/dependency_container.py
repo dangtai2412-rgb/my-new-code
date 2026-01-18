@@ -10,12 +10,13 @@ from infrastructure.repositories.access_and_identity_repo.employee_repository im
 from infrastructure.repositories.access_and_identity_repo.subscription_plan_repository import SubscriptionPlanRepository
 
 # Inventory
-from infrastructure.repositories.inventory_repo import product_repository
 from infrastructure.repositories.inventory_repo.product_repository import ProductRepository
 from infrastructure.repositories.inventory_repo.unit_repository import UnitRepository
 from infrastructure.repositories.inventory_repo.supplier_repository import SupplierRepository
 from infrastructure.repositories.inventory_repo.stock_import_repository import StockImportRepository
 from infrastructure.repositories.inventory_repo.stock_import_detail_repository import StockImportDetailRepository
+from infrastructure.repositories.inventory_repo.category_repository import CategoryRepository
+from infrastructure.repositories.inventory_repo.inventory_check_repository import InventoryCheckRepository
 
 # Sale & Finance
 from infrastructure.repositories.sale_and_finance_repo.customer_repository import CustomerRepository
@@ -24,6 +25,8 @@ from infrastructure.repositories.sale_and_finance_repo.order_detail_repository i
 from infrastructure.repositories.sale_and_finance_repo.debt_repository import DebtRepository
 from infrastructure.repositories.sale_and_finance_repo.payment_repository import PaymentRepository
 from infrastructure.repositories.sale_and_finance_repo.account_report_repository import AccountReportRepository
+from infrastructure.repositories.sale_and_finance_repo.return_order_repository import ReturnOrderRepository
+from infrastructure.repositories.sale_and_finance_repo.expense_repository import ExpenseRepository
 
 # AI Core
 from infrastructure.repositories.ai_core_repo.ai_draft_order_repository import AIDraftOrderRepository
@@ -42,10 +45,7 @@ from services.inventory_service.unit_service import UnitService
 from services.inventory_service.supplier_service import SupplierService
 from services.inventory_service.stock_import_service import StockImportService
 from services.inventory_service.stock_import_detail_service import StockImportDetailService
-from infrastructure.repositories.inventory_repo.category_repository import CategoryRepository
 from services.inventory_service.category_service import CategoryService
-from infrastructure.repositories.inventory_repo.inventory_check_repository import InventoryCheckRepository
-from infrastructure.repositories.inventory_repo.inventory_check_repository import InventoryCheckRepository
 from services.inventory_service.inventory_check_service import InventoryCheckService
 
 # Sale & Finance
@@ -55,15 +55,14 @@ from services.sale_and_finance_service.order_detail_service import OrderDetailSe
 from services.sale_and_finance_service.debt_service import DebtService
 from services.sale_and_finance_service.payment_service import PaymentService
 from services.sale_and_finance_service.account_report_service import AccountReportService
-from infrastructure.repositories.sale_and_finance_repo.return_order_repository import ReturnOrderRepository
 from services.sale_and_finance_service.return_order_service import ReturnOrderService
-from infrastructure.repositories.sale_and_finance_repo.expense_repository import ExpenseRepository
 from services.sale_and_finance_service.expense_service import ExpenseService
 
 # AI Core
 from services.ai_sore_service.ai_draft_order_service import AIDraftOrderService
 from services.ai_sore_service.ai_assistant_service import AIAssistantService
 
+from services.auth_service import AuthService
 
 class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(modules=[
@@ -89,6 +88,7 @@ class Container(containers.DeclarativeContainer):
         "api.controllers.sale_and_finance_control.account_report_controller",
         "api.controllers.sale_and_finance_control.return_order_controller",
         "api.controllers.sale_and_finance_control.expense_controller",
+        "api.controllers.auth_controller",
         
         "api.controllers.ai_core_control.ai_draft_order_controller",
         "api.controllers.ai_core_control.ai_assistant_controller"
@@ -98,7 +98,7 @@ class Container(containers.DeclarativeContainer):
     db_session = providers.Object(session)
 
     # ==========================================================
-    # 1. REPOSITORIES (Khai báo trước)
+    # 1. REPOSITORIES
     # ==========================================================
     administrator_repo = providers.Factory(AdministratorRepository, db_session=db_session)
     business_owner_repo = providers.Factory(BusinessOwnerRepository, db_session=db_session)
@@ -110,6 +110,8 @@ class Container(containers.DeclarativeContainer):
     supplier_repo = providers.Factory(SupplierRepository, db_session=db_session)
     stock_import_repo = providers.Factory(StockImportRepository, db_session=db_session)
     stock_import_detail_repo = providers.Factory(StockImportDetailRepository, db_session=db_session)
+    category_repository = providers.Factory(CategoryRepository, db_session=db_session) # Thêm db_session nếu cần, hoặc để trống tùy constructor
+    inventory_check_repository = providers.Factory(InventoryCheckRepository, db_session=db_session)
 
     customer_repo = providers.Factory(CustomerRepository, db_session=db_session)
     order_repo = providers.Factory(OrderRepository, db_session=db_session)
@@ -117,12 +119,16 @@ class Container(containers.DeclarativeContainer):
     debt_repo = providers.Factory(DebtRepository, db_session=db_session)
     payment_repo = providers.Factory(PaymentRepository, db_session=db_session)
     account_report_repo = providers.Factory(AccountReportRepository, db_session=db_session)
+    return_order_repository = providers.Factory(ReturnOrderRepository, db_session=db_session)
+    expense_repository = providers.Factory(ExpenseRepository, db_session=db_session)
 
     ai_draft_order_repo = providers.Factory(AIDraftOrderRepository, db_session=db_session)
     ai_assistant_repo = providers.Factory(AIAssistantRepository, db_session=db_session)
 
+
+
     # ==========================================================
-    # 2. SERVICES (Khai báo sau, dùng Repository ở trên)
+    # 2. SERVICES
     # ==========================================================
     
     # --- Access & Identity ---
@@ -137,17 +143,18 @@ class Container(containers.DeclarativeContainer):
     supplier_service = providers.Factory(SupplierService, repository=supplier_repo)
     stock_import_service = providers.Factory(StockImportService, repository=stock_import_repo)
     stock_import_detail_service = providers.Factory(StockImportDetailService, repository=stock_import_detail_repo)
-    category_repository = providers.Factory(CategoryRepository)
+    
     category_service = providers.Factory(CategoryService, category_repository=category_repository)
-    inventory_check_repository = providers.Factory(InventoryCheckRepository)
+    
+    # [Đã sửa lỗi pickle ở đây]
     inventory_check_service = providers.Factory(
         InventoryCheckService,
-        product_repository=product_repository,
+        product_repository=product_repo, 
         inventory_check_repository=inventory_check_repository
     )
+    
     # --- Sale & Finance ---
     customer_service = providers.Factory(CustomerService, repository=customer_repo)
-    
     debt_service = providers.Factory(DebtService, repository=debt_repo)
     
     payment_service = providers.Factory(
@@ -158,24 +165,31 @@ class Container(containers.DeclarativeContainer):
     
     order_detail_service = providers.Factory(OrderDetailService, repository=order_detail_repo)
     
-    # Order Service cần cả OrderRepo và DebtService (để tự động ghi nợ)
     order_service = providers.Factory(
         OrderService,
         repository=order_repo,
         debt_service=debt_service
     )
 
+    # [BỔ SUNG QUAN TRỌNG] Account Report Service
+    account_report_service = providers.Factory(AccountReportService, repository=account_report_repo)
+
+    # [Đã sửa lỗi pickle ở đây]
+    return_order_service = providers.Factory(
+        ReturnOrderService,
+        product_repository=product_repo,
+        return_order_repository=return_order_repository
+    )
     
+    expense_service = providers.Factory(ExpenseService, expense_repository=expense_repository)
 
     # --- AI Core ---
-    # AI Assistant cần AI Repo và AI Draft Repo
     ai_assistant_service = providers.Factory(
         AIAssistantService,
         repository=ai_assistant_repo,
         ai_draft_order_repo=ai_draft_order_repo
     )
 
-    # AI Draft Order cần rất nhiều thứ để kiểm tra tên sản phẩm, khách hàng
     ai_draft_order_service = providers.Factory(
         AIDraftOrderService,
         draft_repo=ai_draft_order_repo,
@@ -183,13 +197,9 @@ class Container(containers.DeclarativeContainer):
         customer_repo=customer_repo,
         product_repo=product_repo
     )
-    return_order_repository = providers.Factory(ReturnOrderRepository)
-
-    # Service (Inject ProductRepo + ReturnRepo)
-    return_order_service = providers.Factory(
-        ReturnOrderService,
-        product_repository=product_repository,
-        return_order_repository=return_order_repository
+    auth_service = providers.Factory(
+        AuthService,
+        admin_repo=administrator_repo,     # Tiêm AdministratorRepository
+        owner_repo=business_owner_repo,    # Tiêm BusinessOwnerRepository
+        emp_repo=employee_repo             # Tiêm EmployeeRepository
     )
-    expense_repository = providers.Factory(ExpenseRepository)
-    expense_service = providers.Factory(ExpenseService, expense_repository=expense_repository)
