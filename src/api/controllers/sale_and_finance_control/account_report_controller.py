@@ -1,57 +1,57 @@
 from flask import Blueprint, jsonify
 from api.middlewares.auth_middleware import token_required
-# Thay vì import từ finance_service chung chung
-from services.sale_and_finance_service.account_report_service import AccountReportService
-from infrastructure.repositories.sale_and_finance_repo.account_report_repository import AccountReportRepository
-from infrastructure.databases.mssql import session
 from dependency_injector.wiring import inject, Provide
 from dependency_container import Container
+
 account_report_bp = Blueprint('account_report_bp', __name__)
 
-@account_report_bp.route('/', methods=['POST'])
+@account_report_bp.route('/dashboard', methods=['GET'])
 @token_required
 @inject
-def create_report():
+def get_dashboard_stats(current_user, service=Provide[Container.account_report_service]):
     """
-    Tạo báo cáo doanh thu
+    Lấy số liệu tổng quan Dashboard
     ---
-    tags: [Reports]
-    security: [{BearerAuth: []}]
-    parameters:
-      - in: body
-        name: body
-        schema:
-          properties:
-            owner_id: {type: integer, example: 1}
-            report_type: {type: string, example: "Monthly"}
-            report_name: {type: string, example: "Báo cáo tháng 1"}
+    tags:
+      - Reporting
+    security:
+      - Bearer: []
     responses:
-      201: {description: "Thành công"}
+      200:
+        description: Trả về doanh thu, đơn hàng, cảnh báo kho
     """
-# src/api/controllers/sale_and_finance_control/account_report_controller.py
-from flask import Blueprint, request, jsonify
-from api.middlewares.auth_middleware import token_required
-from dependency_injector.wiring import inject, Provide
-from dependency_container import Container
+    stats = service.get_dashboard_stats(current_user.owner_id)
+    return jsonify(stats), 200
 
-account_report_bp = Blueprint('account_report_bp', __name__)
-
-@account_report_bp.route('/tt88', methods=['GET'])
+@account_report_bp.route('/chart', methods=['GET'])
 @token_required
 @inject
-def get_tt88_report(report_service = Provide[Container.report_service]):
+def get_revenue_chart(current_user, service=Provide[Container.account_report_service]):
     """
-    Lấy báo cáo Sổ chi tiết doanh thu (Thông tư 88)
-    Query param: ?date=YYYY-MM-DD
+    Lấy dữ liệu biểu đồ doanh thu 7 ngày
+    ---
+    tags:
+      - Reporting
+    security:
+      - Bearer: []
+    responses:
+      200:
+        description: Mảng dữ liệu ngày và doanh thu
     """
-    try:
-        owner_id = getattr(request, 'current_user_id', None)
-        report_date = request.args.get('date') # FE gửi ngày muốn xem báo cáo
-        
-        if not report_date:
-            return jsonify({"error": "Vui lòng chọn ngày báo cáo (?date=...)"}), 400
-            
-        report_data = report_service.generate_daily_report(owner_id, report_date)
-        return jsonify(report_data), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    chart_data = service.get_revenue_chart(current_user.owner_id)
+    return jsonify(chart_data), 200
+
+@account_report_bp.route('/top-products', methods=['GET'])
+@token_required
+@inject
+def get_top_products(current_user, service=Provide[Container.account_report_service]):
+    """
+    Lấy Top 5 sản phẩm bán chạy
+    ---
+    tags:
+      - Reporting
+    security:
+      - Bearer: []
+    """
+    products = service.get_top_products(current_user.owner_id)
+    return jsonify(products), 200

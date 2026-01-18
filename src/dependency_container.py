@@ -57,6 +57,8 @@ from services.sale_and_finance_service.payment_service import PaymentService
 from services.sale_and_finance_service.account_report_service import AccountReportService
 from infrastructure.repositories.sale_and_finance_repo.return_order_repository import ReturnOrderRepository
 from services.sale_and_finance_service.return_order_service import ReturnOrderService
+from infrastructure.repositories.sale_and_finance_repo.expense_repository import ExpenseRepository
+from services.sale_and_finance_service.expense_service import ExpenseService
 
 # AI Core
 from services.ai_sore_service.ai_draft_order_service import AIDraftOrderService
@@ -86,6 +88,7 @@ class Container(containers.DeclarativeContainer):
         "api.controllers.sale_and_finance_control.payment_controller",
         "api.controllers.sale_and_finance_control.account_report_controller",
         "api.controllers.sale_and_finance_control.return_order_controller",
+        "api.controllers.sale_and_finance_control.expense_controller",
         
         "api.controllers.ai_core_control.ai_draft_order_controller",
         "api.controllers.ai_core_control.ai_assistant_controller"
@@ -162,7 +165,11 @@ class Container(containers.DeclarativeContainer):
         debt_service=debt_service
     )
 
-    report_service = providers.Factory(AccountReportService, repository=account_report_repo)
+    account_report_repository = providers.Factory(AccountReportRepository)
+    account_report_service = providers.Factory(
+        AccountReportService, 
+        account_report_repository=account_report_repository
+    )
 
     # --- AI Core ---
     # AI Assistant cần AI Repo và AI Draft Repo
@@ -188,3 +195,5 @@ class Container(containers.DeclarativeContainer):
         product_repository=product_repository,
         return_order_repository=return_order_repository
     )
+    expense_repository = providers.Factory(ExpenseRepository)
+    expense_service = providers.Factory(ExpenseService, expense_repository=expense_repository)

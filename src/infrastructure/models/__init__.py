@@ -31,3 +31,4 @@ from .inventory.inventory_check_model import InventoryCheckModel
 from .inventory.inventory_check_detail_model import InventoryCheckDetailModel
 from .sale_and_finance.return_order_model import ReturnOrderModel
 from .sale_and_finance.return_order_detail_model import ReturnOrderDetailModel
+from .sale_and_finance.expense_model import ExpenseModel
